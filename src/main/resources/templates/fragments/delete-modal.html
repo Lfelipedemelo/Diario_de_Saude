@@ -1,0 +1,17 @@
+<div th:fragment="deleteVacina" class="modal fade" th:id="modalExcluirVacina+${vacina.id}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header">
+    <h5 class="modal-title" id="staticBackdropLabel">Excluir Registro</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+   </div>
+   <div class="modal-body">
+    <h5 style="text-align:center">Deseja excluir a vacina<p style="text-align:center"><span th:text="${vacina.nome}"></span>?</p></h5>
+   </div>
+   <div class="modal-footer">
+    <a th:href="@{/vacinas/delete/{id}(id=${vacina.id})}" class="btn btn-danger">Sim</a>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">N&atildeo</button>
+   </div>
+  </div>
+ </div>
+</div>

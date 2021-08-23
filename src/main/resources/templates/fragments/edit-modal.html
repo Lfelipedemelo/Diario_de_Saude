@@ -1,0 +1,47 @@
+<div th:fragment="editVacina" th:id="modaleditarVacina+${vacina.id}" class="modal fade" id="modalEditarVacina" data-bs-backdrop="static"
+	data-bs-keyboard="false" tabindex="-1"
+	aria-labelledby="modalEditarVacina" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="staticBackdropLabelEdit">Editar
+					Vacina</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"
+					aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form class="row g-3 needs-validation"
+					th:action="@{/vacinas/update}" method="post" novalidate>
+					<div class="col-12">
+						<label for="inputEditNomeVacina" class="form-label">Nome
+							da Vacina</label> <input type="text" class="form-control" id="nomeEdit"
+							placeholder="" name="nomeEdit" required>
+						<div class="invalid-feedback">Nome da vacina é obrigatório!
+						</div>
+					</div>
+					<div class="col-md-4">
+						<label for="inputEditPrimeiraDose" class="form-label">Primeira
+							dose</label> <input type="date" class="form-control"
+							id="dose1Edit" name="dose1Edit" required>
+						<div class="invalid-feedback">Primeira dose obrigatório!</div>
+					</div>
+					<div class="col-md-4">
+						<label for="inputEditSegundaDose" class="form-label">Segunda
+							dose</label> <input type="date" class="form-control"
+							id="dose2Edit" name="dose2Edit">
+					</div>
+					<div class="col-md-4">
+						<label for="inputEditTerceiraDose" class="form-label">Terceira
+							Dose</label> <input type="date" class="form-control"
+							id="dose3Edit" name="dose3Edit">
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary">Adicionar</button>
+						<button type="button" class="btn btn-secondary"
+							data-bs-dismiss="modal">Cancelar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

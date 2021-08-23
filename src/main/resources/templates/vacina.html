@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Diário de Saúde</title>
+       	<link rel="stylesheet" th:href="@{/assets/css/styles.css}" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    </head>
+    <body class="sb-nav-fixed">
+	<div th:replace="fragments/navigation :: top-nav-bar"></div>
+        <div id="layoutSidenav">
+		<div th:replace="fragments/sidebar :: side-bar"></div>
+            <div id="layoutSidenav_content">
+                <main>
+                  <div class="menuVacinas d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+			        <h1 class="h2">Vacinas</h1>
+			        <div class="btn-toolbar mb-2 mb-md-0">
+			          <div class="btn-group me-2">
+			            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalAdicionarVacina">Adicionar</button>
+			          </div>
+			        </div>
+			      </div>
+                </main>
+                <!-- Modal Criar Vacina -->
+				<div class="modal fade" id="modalAdicionarVacina" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalAdicionarVacina" aria-hidden="true">
+				  <div class="modal-dialog modal-lg">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="staticBackdropLabel">Adicionar Vacina</h5>
+				        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				      </div>
+				      <div class="modal-body">
+				       <form class="row g-3 needs-validation" action="/vacinas" method="POST">
+						  <div class="col-12">
+						    <label for="inputNomeVacina" class="form-label">Nome da Vacina</label>
+						    <input type="text" class="form-control" id="inputNomeVacina" placeholder="" name="nome" required>
+						  </div>
+						  <div class="col-md-4">
+						    <label for="inputPrimeiraDose" class="form-label">Primeira dose</label>
+						    <input type="date" th:max="${maxDate}" class="form-control" id="inputPrimeiraDose" name="dose1"  required>
+						  </div>
+						  <div class="col-md-4">
+						    <label for="inputSegundaDose" class="form-label">Segunda dose</label>
+						    <input type="date" th:max=${maxDate} class="form-control" id="inputSegundaDose" name="dose2">
+						  </div>
+						  <div class="col-md-4">
+						    <label for="inputTerceiraDose" class="form-label">Terceira Dose</label>
+						    <input type="date" th:max=${maxDate} class="form-control" id="inputTerceiraDose" name="dose3">
+						  </div>
+					      <div class="modal-footer">
+					        <button type="submit" class="btn btn-primary">Adicionar</button>
+					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+					      </div>
+						</form>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				<!-- FimModal Criar Vacina -->
+				<!-- inicio da table -->
+				 <div class="card mb-12">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Vacinas Cadastradas
+                            </div>
+                            <div class="card-body">
+                                 <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Primeira Dose</th>
+                                            <th>Segunda Dose</th>
+                                            <th>Terceira Dose</th>
+                                            <th>Reforço</th>
+                                            <th>Ação</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="vacina : ${vacinas}">
+                                            <td th:text="${vacina.nome}">Nome</td>
+                                            <td th:text="${#dates.format(vacina.dose1, 'dd/MM/yyyy')}">Primeira Dose</td>
+                                            <td th:text="${#dates.format(vacina.dose2, 'dd/MM/yyyy')}">Segunda Dose</td>
+                                            <td th:text="${#dates.format(vacina.dose3, 'dd/MM/yyyy')}">Terceira Dose</td>
+                                            <td th:text="${vacina.reforco}">Reforço</td>
+                                            <td>
+	                                        	 <div class="btn-group me-2">
+													<a type="button" class="btn btn-sm btn-outline-secondary"
+													data-bs-toggle="modal" data-bs-target="#modalEditarVacina"
+													th:attr="data-bs-target='#modalEditarVacina'+${vacina.id}">Editar</a>
+													<a class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+													th:attr="data-bs-target='#modalExcluirVacina'+${vacina.id}">Deletar</a>
+												<div th:replace="~{fragments/delete-modal :: deleteVacina}"></div>
+												<div th:replace="~{fragments/edit-modal :: editVacina}"></div>
+												</div>
+											</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                    </div>
+			<div th:replace="fragments/footer :: footer"></div>
+                    </div>
+            </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/assets/js/datatables-simple-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"></script>
+        <script src="/assets/js/scripts.js"></script>
+    </body>
+</html>
