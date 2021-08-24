@@ -16,15 +16,15 @@
 						  </div>
 						  <div class="col-md-4">
 						    <label for="inputPrimeiraDose" class="form-label">Primeira dose</label>
-						    <input th:text="${vacina.dose1}" type="date" th:max="${maxDate}" class="form-control" id="inputPrimeiraDose" name="dose1"  required>
+						    <input th:value="${#dates.format(vacina.dose1, 'yyyy-MM-dd')}" type="date" th:max="${maxDate}" class="form-control" id="inputPrimeiraDose" name="dose1"  required>
 						  </div>
 						  <div class="col-md-4">
 						    <label for="inputSegundaDose" class="form-label">Segunda dose</label>
-						    <input th:value="${vacina.dose2}" type="date" th:max=${maxDate} class="form-control" id="inputSegundaDose" name="dose2">
+						    <input th:value="${#dates.format(vacina.dose2, 'yyyy-MM-dd')}" type="date" th:max=${maxDate} class="form-control" id="inputSegundaDose" name="dose2">
 						  </div>
 						  <div class="col-md-4">
 						    <label for="inputTerceiraDose" class="form-label">Terceira Dose</label>
-						    <input th:value="${vacina.dose3}" type="date" th:max=${maxDate} class="form-control" id="inputTerceiraDose" name="dose3">
+						    <input th:value="${#dates.format(vacina.dose3, 'yyyy-MM-dd')}" type="date" th:max=${maxDate} class="form-control" id="inputTerceiraDose" name="dose3">
 						  </div>
 					      <div class="modal-footer">
 					        <button type="submit" class="btn btn-primary">Salvar</button>
