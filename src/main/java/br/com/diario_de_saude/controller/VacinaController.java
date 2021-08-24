@@ -35,7 +35,7 @@ public class VacinaController {
 	}
 
 	@PostMapping
-	public String create(@Valid Vacina vacina, BindingResult result) {
+	public String create(@Valid Vacina vacina) {
 		vacinaRep.save(vacina);
 		return "redirect:/vacinas/";
 	}
@@ -43,6 +43,14 @@ public class VacinaController {
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Long id) {
 		vacinaRep.deleteById(id);
+		return "redirect:/vacinas/";
+	}
+	
+	@PostMapping("/update")
+	public String update(@Valid Vacina vacina) {
+		System.out.println("ID: " + vacina.getId() + "\n");
+		System.out.println("NOME: " + vacina.getNome() + "\n");
+		vacinaRep.save(vacina);
 		return "redirect:/vacinas/";
 	}
 }
