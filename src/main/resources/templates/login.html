@@ -5,8 +5,6 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
         <title>Login - Diário de Saúde</title>
         <link rel="stylesheet" th:href="@{/assets/css/styles.css}" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -22,7 +20,7 @@
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Diário de saúde</h3></div>
                                     <div class="card-body">
                                         <form method="POST" action="/login">
-                                        	<div th:text="${msg}">asdf</div>
+                                        	<div class="alert alert-danger" th:if="${msg}" th:text="${msg}"></div>
                                             <div class="form-floating mb-3">
                                                 <input name="email" class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
                                                 <label for="inputEmail">Email</label>
@@ -38,7 +36,7 @@
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="register.html">Registrar-se!</a></div>
+                                        <div class="small"><a th:href="@{/register}">Registrar-se!</a></div>
                                     </div>
                                 </div>
                             </div>

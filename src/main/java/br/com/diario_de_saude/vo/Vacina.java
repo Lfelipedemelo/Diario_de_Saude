@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -31,7 +32,8 @@ public class Vacina implements Serializable {
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dose3;
-
+	@ManyToOne
+	Usuario usuario;
 	@Column
 	private boolean reforco;
 
@@ -107,6 +109,14 @@ public class Vacina implements Serializable {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }

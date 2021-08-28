@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,51 +23,56 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioRepository rep;
-	
+
 	@GetMapping("/dashboard")
 	public String dashboard() {
 		return "home";
 	}
-	
+
 	@GetMapping("/")
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("login");
 		return mv;
 	}
 
-//	@PostMapping("/register")
-//	public ModelAndView create(@Valid Usuario usuario) {
-//		ModelAndView mv = new ModelAndView("redirect:cadastro");
-//		if (service.criarUsuario(usuario)) {
-//			mv.addObject("msg", "Usuário cadastrado com sucesso!");
-//		} else {
-//			mv.addObject("msg", "Email já cadastrado!");
-//			mv.setViewName("cadastro");
-//		}
-//		return mv;
-//	}
-
-	@PostMapping("/login")
-	public ModelAndView login(@Valid Usuario usuario, HttpSession session, BindingResult result) throws NoSuchAlgorithmException {
-		ModelAndView mv = new ModelAndView("home");
-			usuario = rep.verificarLogin(usuario.getEmail(), usuario.getSenha());
-		if (usuario != null) {
-			mv.addObject("msg", "Bem vindo" + usuario.getEmail());
-			System.out.print("Email: " + usuario.getEmail() + "\nSenha: " + usuario.getSenha());
-			session.setAttribute("usuarioLogado", usuario);
+	@PostMapping("/register/")
+	public ModelAndView create(@Valid Usuario usuario, Model model) {
+		ModelAndView mv = new ModelAndView("cadastro");
+		
+		if (usuario != null && rep.findByEmail(usuario.getEmail()) == null) {
+			rep.save(usuario);
+			mv.addObject("msg", "Usuário cadastrado com sucesso!");
 		} else {
-			mv.addObject("msg", "Email ou senha incorreto!");
-			mv.setViewName("login");
+			mv.addObject("msg", "Email já cadastrado!");
 		}
 		return mv;
 	}
-	
+
+	@GetMapping("/register")
+	public ModelAndView register() {
+		ModelAndView mv = new ModelAndView("cadastro");
+		return mv;
+	}
+
+	@PostMapping("/login")
+	public ModelAndView login(@Valid Usuario usuario, HttpSession session, BindingResult result)
+			throws NoSuchAlgorithmException {
+		ModelAndView mv = new ModelAndView("login");
+		usuario = rep.verificarLogin(usuario.getEmail(), usuario.getSenha());
+		if (usuario != null) {
+			session.setAttribute("usuarioLogado", usuario);
+			mv.setViewName("home");
+		} else {
+			mv.addObject("msg", "Email ou senha incorreto!");
+		}
+		return mv;
+	}
+
 	@GetMapping("/logout")
-	public ModelAndView logou(HttpSession session) {
+	public ModelAndView logout(HttpSession session) {
 		ModelAndView mv = new ModelAndView("login");
 		session.invalidate();
 		return mv;
 	}
-	
-}
 
+}

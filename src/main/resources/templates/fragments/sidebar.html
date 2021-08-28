@@ -61,7 +61,7 @@
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Bem vindo:</div>
-            <a th:text="${session.usuarioLogado?.email}">NomeUsuario</a>
+            <a th:if="${session.usuarioLogado}" th:text="${session.usuarioLogado.nome}">NomeUsuario</a>
         </div>
     </nav>
 </div>

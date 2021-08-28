@@ -15,15 +15,15 @@ public class Usuario {
 	@Column(nullable = false)
 	private String senha;
 	
+	@Column(nullable = false)
+	private String nome;
+	
+	private String sobrenome;
+	
 	public Usuario() {
 		
 	}
 	
-	public Usuario(String email, String senha) {
-		super();
-		this.email = email;
-		this.senha = senha;
-	}
 
 	public long getId() {
 		return id;
@@ -69,5 +69,25 @@ public class Usuario {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+
+	public String getNome() {
+		return nome;
+	}
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
 	}
 }
