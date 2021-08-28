@@ -3,7 +3,7 @@
         <div class="sb-sidenav-menu">
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">Core</div>
-                <a class="nav-link" th:href="@{/}">
+                <a class="nav-link" th:href="@{/dashboard}">
                     <div class="sb-nav-link-icon"><i class="fas fa-home" aria-hidden="true"></i></div>
                     Inicio
                 </a>
@@ -61,7 +61,7 @@
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Bem vindo:</div>
-            NomeUsuario
+            <a th:text="${session.usuarioLogado?.email}">NomeUsuario</a>
         </div>
     </nav>
 </div>
