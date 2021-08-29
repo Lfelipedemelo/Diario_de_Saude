@@ -35,13 +35,12 @@ public class UsuarioController {
 		return mv;
 	}
 
-	@PostMapping("/register/")
-	public ModelAndView create(@Valid Usuario usuario, Model model) {
+	@PostMapping("/register")
+	public ModelAndView create(@Valid Usuario usuario) {
 		ModelAndView mv = new ModelAndView("cadastro");
-		
 		if (usuario != null && rep.findByEmail(usuario.getEmail()) == null) {
 			rep.save(usuario);
-			mv.addObject("msg", "Usuário cadastrado com sucesso!");
+			mv.addObject("msgSuccess", "Usuário cadastrado com sucesso!");
 		} else {
 			mv.addObject("msg", "Email já cadastrado!");
 		}

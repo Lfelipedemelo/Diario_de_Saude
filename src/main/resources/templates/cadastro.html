@@ -21,7 +21,8 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Diário de Saúde</h3></div>
                                     <div class="card-body">
-                                        <form action="/register/" method="POST">
+                                        <form action="/register" method="POST">
+                                        <div class="alert alert-success" th:if="${msgSuccess}" th:text="${msgSuccess}"></div>
                                         <div class="alert alert-danger" th:if="${msg}" th:text="${msg}"></div>
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
