@@ -4,8 +4,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
         <title>Diário de Saúde</title>
        	<link rel="stylesheet" th:href="@{/assets/css/styles.css}" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
@@ -20,7 +18,7 @@
 			        <h1 class="h2">Vacinas</h1>
 			        <div class="btn-toolbar mb-2 mb-md-0">
 			          <div class="btn-group me-2">
-			            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalAdicionarVacina">Adicionar</button>
+			            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAdicionarVacina">Adicionar</button>
 			          </div>
 			        </div>
 			      </div>
@@ -35,6 +33,7 @@
 				      </div>
 				      <div class="modal-body">
 				       <form class="row g-3 needs-validation" action="/vacinas" method="POST">
+				       <input th:value="${session.usuarioLogado.id}" type="hidden" id="idUsuario" name="usuario.id">
 						  <div class="col-12">
 						    <label for="inputNomeVacina" class="form-label">Nome da Vacina</label>
 						    <input type="text" class="form-control" id="inputNomeVacina" placeholder="" name="nome" required>
@@ -75,7 +74,7 @@
                                             <th>Primeira Dose</th>
                                             <th>Segunda Dose</th>
                                             <th>Terceira Dose</th>
-                                            <th>Reforço</th>
+<!--                                             <th>Reforço</th> -->
                                             <th>Ação</th>
                                         </tr>
                                     </thead>
@@ -85,13 +84,13 @@
                                             <td th:text="${#dates.format(vacina.dose1, 'dd/MM/yyyy')}">Primeira Dose</td>
                                             <td th:text="${#dates.format(vacina.dose2, 'dd/MM/yyyy')}">Segunda Dose</td>
                                             <td th:text="${#dates.format(vacina.dose3, 'dd/MM/yyyy')}">Terceira Dose</td>
-                                            <td th:text="${vacina.reforco}">Reforço</td>
+<!--                                             <td th:text="${vacina.reforco}">Reforço</td> -->
                                             <td>
 	                                        	 <div class="btn-group me-2">
-													<a type="button" class="btn btn-sm btn-outline-secondary"
+													<a type="button" class="btn btn-outline-primary"
 													data-bs-toggle="modal" data-bs-target="#modalEditarVacina"
 													th:attr="data-bs-target='#modalEditarVacina'+${vacina.id}">Editar</a>
-													<a class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+													<a class="btn btn-outline-danger" data-bs-toggle="modal"
 													th:attr="data-bs-target='#modalExcluirVacina'+${vacina.id}">Deletar</a>
 												<div th:replace="~{fragments/delete-modal :: deleteVacina}"></div>
 												<div th:replace="~{fragments/edit-modal :: editVacina}"></div>
