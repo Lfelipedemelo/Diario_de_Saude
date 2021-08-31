@@ -26,7 +26,7 @@ public class VacinaController {
 	@Autowired
 	private VacinaRepository vacinaRep;
 
-	@GetMapping("/")
+	@GetMapping
 	public ModelAndView listVacina(HttpSession session, Model model) {
 		ModelAndView mv = new ModelAndView("vacina");
 		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
@@ -52,8 +52,6 @@ public class VacinaController {
 
 	@PostMapping("/update")
 	public String update(@Valid Vacina vacina) {
-		System.out.println("ID: " + vacina.getId() + "\n");
-		System.out.println("NOME: " + vacina.getNome() + "\n");
 		vacinaRep.save(vacina);
 		return "redirect:/vacinas/";
 	}

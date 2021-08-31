@@ -9,7 +9,7 @@
         <link rel="stylesheet" th:href="@{/assets/css/styles.css}" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
-    <body class="bg-primary">
+    <body class="loginBg">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -17,7 +17,7 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Diário de saúde</h3></div>
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Diário de Saúde</h3></div>
                                     <div class="card-body">
                                         <form method="POST" action="/login">
 		                                    <div class="alert alert-danger" th:if="${msg}" th:text="${msg}"></div>

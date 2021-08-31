@@ -88,6 +88,7 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+
 hr {
   margin: 1rem 0;
   color: inherit;
@@ -11698,4 +11699,11 @@ body {
 
 .footerNegativeMargin{
 	margin-left: -15px;
+}
+
+.loginBg{
+	background-image: url("/assets/img/bg-login.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
 }

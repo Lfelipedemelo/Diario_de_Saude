@@ -4,8 +4,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
         <title>Diário de Saúde</title>
        	<link rel="stylesheet" th:href="@{/assets/css/styles.css}" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
@@ -76,7 +74,7 @@
                                             <th>Primeira Dose</th>
                                             <th>Segunda Dose</th>
                                             <th>Terceira Dose</th>
-                                            <th>Reforço</th>
+<!--                                             <th>Reforço</th> -->
                                             <th>Ação</th>
                                         </tr>
                                     </thead>
@@ -86,7 +84,7 @@
                                             <td th:text="${#dates.format(vacina.dose1, 'dd/MM/yyyy')}">Primeira Dose</td>
                                             <td th:text="${#dates.format(vacina.dose2, 'dd/MM/yyyy')}">Segunda Dose</td>
                                             <td th:text="${#dates.format(vacina.dose3, 'dd/MM/yyyy')}">Terceira Dose</td>
-                                            <td th:text="${vacina.reforco}">Reforço</td>
+<!--                                             <td th:text="${vacina.reforco}">Reforço</td> -->
                                             <td>
 	                                        	 <div class="btn-group me-2">
 													<a type="button" class="btn btn-outline-primary"
