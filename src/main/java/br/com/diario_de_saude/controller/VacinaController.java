@@ -27,19 +27,25 @@ public class VacinaController {
 	private VacinaRepository vacinaRep;
 
 	@GetMapping
-	public ModelAndView listVacina(HttpSession session, Model model) {
+	public ModelAndView listVacina(HttpSession session) {
 		ModelAndView mv = new ModelAndView("vacina");
-		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
-		if(usuario != null) {
-			List<Vacina> vacinas = vacinaRep.findAllByUsuarioId(usuario.getId());
-			mv.addObject("vacinas", vacinas);
-			mv.addObject("maxDate" ,LocalDate.now());
+		try {
+			Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");			
+			if(usuario != null) {
+				List<Vacina> vacinas = vacinaRep.findAllByUsuarioId(usuario.getId());
+				mv.addObject("vacinas", vacinas);
+				mv.addObject("maxDate" ,LocalDate.now());
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 		return mv;
 	}
 
 	@PostMapping
-	public String create(@Valid Vacina vacina) {
+	public String create(@Valid Vacina vacina, HttpSession session) {
+		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+		vacina.setUsuario(usuario);
 		vacinaRep.save(vacina);
 		return "redirect:/vacinas/";
 	}
@@ -51,7 +57,8 @@ public class VacinaController {
 	}
 
 	@PostMapping("/update")
-	public String update(@Valid Vacina vacina) {
+	public String update(@Valid Vacina vacina, HttpSession session) {
+		vacina.setUsuario((Usuario) session.getAttribute("usuarioLogado"));
 		vacinaRep.save(vacina);
 		return "redirect:/vacinas/";
 	}

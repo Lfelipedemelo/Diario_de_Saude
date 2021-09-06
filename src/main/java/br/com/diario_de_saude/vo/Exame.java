@@ -1,35 +1,27 @@
 package br.com.diario_de_saude.vo;
 
-import javax.persistence.Column;
+import java.io.File;
+import java.sql.Blob;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Usuario {
+public class Exame {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-
-	@Column(nullable = false, unique = true)
-	private String email;
-
-	@Column(nullable = false)
-	private String senha;
-
-	@OneToOne
-	@Cascade(CascadeType.ALL)
-	private Perfil perfil;
-
-	public Usuario() {
-
-	}
+	
+	private String nome;
+	
+	private File arquivo;
+	
+	@ManyToOne
+	private Usuario usuario;
 
 	public long getId() {
 		return id;
@@ -39,28 +31,27 @@ public class Usuario {
 		this.id = id;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public String getSenha() {
-		return senha;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	public File getArquivo() {
+		return arquivo;
 	}
 	
-	public Perfil getPerfil() {
-		return perfil;
-	}
-
-	public void setPerfil(Perfil perfil) {
-		this.perfil = perfil;
+	public void setArquivo(File arquivo) {
+		this.arquivo = arquivo;
 	}
 
 	@Override
@@ -79,9 +70,10 @@ public class Usuario {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		Exame other = (Exame) obj;
 		if (id != other.id)
 			return false;
 		return true;
 	}
+
 }
