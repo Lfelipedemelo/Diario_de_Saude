@@ -32,14 +32,22 @@
 				        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				      </div>
 				      <div class="modal-body">
-				       <form class="row g-3 needs-validation" action="/exames" method="POST">
+				       <form class="row g-3 needs-validation" action="/exames" method="POST" enctype="multipart/form-data">
 						  <div class="col-12">
 						    <label for="inputNomeExame" class="form-label">Nome do Exame</label>
 						    <input type="text" class="form-control" id="inputNomeExame" placeholder="" name="nome" required minlength="4">
 						  </div>
 						  <div class="mb-3">
+						  <label for="inputDescricao" class="form-label">Descrição:</label>
+						  <textarea class="form-control" maxlength="255" id="inputDescricao" rows="3" name="descricao" required></textarea>
+						  </div>
+						  <div class="mb-3">
+						    <label for="inputDataExame" class="form-label">Data</label>
+						    <input type="date" th:max="${maxDate}" class="form-control" id="inputDataExame" name="dtaExame"  required>
+						  </div>
+						  <div class="mb-3">
 						    <label for="inputImagem" class="form-label">Arquivo de imagem</label>
-					        <input class="form-control" type="file" id="inputImagem" name="arquivo" multiple="multiple" accept="image/png, image/jpeg">
+					        <input class="form-control" type="file" id="inputImagem" name="imagem" accept="image/png, image/jpeg" required>
 						  </div>
 					      <div class="modal-footer">
 					        <button type="submit" class="btn btn-primary">Adicionar</button>
@@ -52,29 +60,22 @@
 				</div>
 				<!-- FimModal Criar Exame -->
 				<!-- inicio da table -->
-				<div class="card">
-				 <div class="card-header">
-                               <i class="fas fa-images"></i>
-                                Vacinas Cadastradas
-                  </div>
-                  <div class="card-body">
-						<table class="table">
-						  <thead>
-						    <tr>
-						      <th scope="col">Nome</th>
-						      <th scope="col">Arquivo</th>
-						    </tr>
-						  </thead>
-						  <tbody>
-						  	<tr th:each="exame : ${exames}">
-						  		<td th:text="${exame.nome}"></td>
-						  		<td>
-						  			<img id="arquivoImagem" th:src="${exame.arquivo}" class="rounded" />
-						  		</td>
-						  	</tr>
-						  </tbody>
-						</table>
-					</div>
+				<div class="row row-cols-3">
+				  <div class="gy-2" th:each="exame : ${exames}">
+				  <div class="col">
+				  <div class="card">
+				    <img class="img-thumbnail mx-auto my-2" th:src="@{${exame.getCaminhoImagem}}" style="height: 220px; width: 220px;" />
+				    <div class="card-body">
+				      <h5 class="card-title" th:text="${exame.nome}"></h5>
+				      <p class="card-text" th:text="${exame.descricao}"></p>
+				    </div>
+				    <div class="card-footer">
+				      <small class="text-muted">Data do exame: </small>
+				      <small class="text-muted float-end" th:text="${#dates.format(exame.dtaExame, 'dd/MM/yyyy')}"></small>
+				    </div>
+				  </div>
+				  </div>
+				  </div>
 				</div>
 			<div th:replace="fragments/footer :: footer"></div>
                     </div>
