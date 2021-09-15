@@ -68,6 +68,15 @@
 				    <div class="card-body">
 				      <h5 class="card-title" th:text="${exame.nome}"></h5>
 				      <p class="card-text" th:text="${exame.descricao}"></p>
+				      <div class="btn-group me-2">
+<!-- 													<a type="button" class="btn btn-outline-primary" -->
+<!-- 													data-bs-toggle="modal" data-bs-target="#modalEditarVacina" -->
+<!-- 													th:attr="data-bs-target='#modalEditarVacina'+${vacina.id}">Editar</a> -->
+													<a class="btn btn-outline-danger" data-bs-toggle="modal"
+													th:attr="data-bs-target='#modalExcluirExame'+${exame.id}">Deletar</a>
+												<div th:replace="~{fragments/delete-modal :: deleteExame}"></div>
+<!-- 												<div th:replace="~{fragments/edit-modal :: editVacina}"></div> -->
+					</div>
 				    </div>
 				    <div class="card-footer">
 				      <small class="text-muted">Data do exame: </small>

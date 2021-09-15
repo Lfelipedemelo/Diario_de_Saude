@@ -1,5 +1,6 @@
 package br.com.diario_de_saude.controller;
 
+import java.awt.print.Pageable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,6 +35,7 @@ public class ExameController {
 		List<Exame> exames = repository.findAll();
 		mv.addObject("exames",exames);
 		mv.addObject("maxDate" ,LocalDate.now());
+		Pageable page;
 		return mv;
 	}
 	
@@ -46,5 +49,11 @@ public class ExameController {
 		String diretorio = "exame-img/" + exameSalvo.getUsuario().getId();
 		FileUploadUtil.saveFile(diretorio, fileName, mpFile);
 		return mv;
+	}
+	
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable Long id) {
+		repository.deleteById(id);
+		return "redirect:/exames";
 	}
 }
