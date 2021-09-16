@@ -10,7 +10,6 @@
 				      <div class="modal-body">
 				       <form class="row g-3 needs-validation" action="/vacinas/update" method="POST">
 				       <input th:value="${vacina.id}" type="hidden" id="inputIdVacina" name="id">
-				       <input th:value="${session.usuarioLogado.id}" type="hidden" name="usuario.id">
 						  <div class="col-12">
 						    <label for="inputNomeVacina" class="form-label">Nome da Vacina</label>
 						    <input th:value="${vacina.nome}" type="text" class="form-control" id="inputNomeVacina" placeholder="" name="nome" required>

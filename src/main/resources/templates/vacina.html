@@ -14,7 +14,7 @@
 		<div th:replace="fragments/sidebar :: side-bar"></div>
             <div id="layoutSidenav_content">
                 <main>
-                  <div class="menuVacinas d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 			        <h1 class="h2">Vacinas</h1>
 			        <div class="btn-toolbar mb-2 mb-md-0">
 			          <div class="btn-group me-2">
@@ -33,7 +33,6 @@
 				      </div>
 				      <div class="modal-body">
 				       <form class="row g-3 needs-validation" action="/vacinas" method="POST">
-				       <input th:value="${session.usuarioLogado.id}" type="hidden" id="idUsuario" name="usuario.id">
 						  <div class="col-12">
 						    <label for="inputNomeVacina" class="form-label">Nome da Vacina</label>
 						    <input type="text" class="form-control" id="inputNomeVacina" placeholder="" name="nome" required>
@@ -86,7 +85,7 @@
                                             <td th:text="${#dates.format(vacina.dose3, 'dd/MM/yyyy')}">Terceira Dose</td>
 <!--                                             <td th:text="${vacina.reforco}">Reforço</td> -->
                                             <td>
-	                                        	 <div class="btn-group me-2">
+	                                        	 <div class="btn-group">
 													<a type="button" class="btn btn-outline-primary"
 													data-bs-toggle="modal" data-bs-target="#modalEditarVacina"
 													th:attr="data-bs-target='#modalEditarVacina'+${vacina.id}">Editar</a>

@@ -7009,6 +7009,10 @@ textarea.form-control-lg {
   min-height: 100vh !important;
 }
 
+.min-vh-50 {
+  min-height: 50vh !important;
+}
+
 .flex-fill {
   flex: 1 1 auto !important;
 }
@@ -11689,7 +11693,7 @@ body {
   border-radius: 0.25rem !important;
 }
 
-.menuVacinas{
+.contentCenter{
   margin-left: 10px;
   margin-right: 10px;
   padding-left: 10px;

@@ -1,6 +1,14 @@
 package br.com.diario_de_saude.vo;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 public class Usuario {
@@ -8,22 +16,20 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@Column(nullable = false, unique = true)
 	private String email;
-	
+
 	@Column(nullable = false)
 	private String senha;
-	
-	@Column(nullable = false)
-	private String nome;
-	
-	private String sobrenome;
-	
+
+	@OneToOne
+	@Cascade(CascadeType.ALL)
+	private Perfil perfil;
+
 	public Usuario() {
-		
+
 	}
-	
 
 	public long getId() {
 		return id;
@@ -48,6 +54,14 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+	public Perfil getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
+	}
 
 	@Override
 	public int hashCode() {
@@ -69,25 +83,5 @@ public class Usuario {
 		if (id != other.id)
 			return false;
 		return true;
-	}
-
-
-	public String getNome() {
-		return nome;
-	}
-
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-
-	public String getSobrenome() {
-		return sobrenome;
-	}
-
-
-	public void setSobrenome(String sobrenome) {
-		this.sobrenome = sobrenome;
 	}
 }
