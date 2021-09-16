@@ -20,8 +20,12 @@
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Diário de Saúde</h3></div>
                                     <div class="card-body">
                                         <form action="/register" method="POST">
-                                        <div class="alert alert-success" th:if="${msgSuccess}" th:text="${msgSuccess}"></div>
-                                        <div class="alert alert-danger" th:if="${msg}" th:text="${msg}"></div>
+                                        <div class="alert alert-success" th:if="${msgSuccess}" th:text="${msgSuccess}">
+                                        	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                        <div class="alert alert-danger" th:if="${msg}" th:text="${msg}">
+                                        	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">

@@ -1,9 +1,5 @@
 package br.com.diario_de_saude.controller;
 
-import java.awt.print.Pageable;
-import java.time.LocalDate;
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.diario_de_saude.repository.ExameRepository;
+import br.com.diario_de_saude.service.ExameService;
 import br.com.diario_de_saude.utils.FileUploadUtil;
 import br.com.diario_de_saude.vo.Exame;
 import br.com.diario_de_saude.vo.Usuario;
@@ -29,26 +26,24 @@ public class ExameController {
 	@Autowired
 	private ExameRepository repository;
 	
+	@Autowired
+	private ExameService service;
+	
 	@GetMapping
 	public ModelAndView listExames(HttpSession session) {
-		ModelAndView mv = new ModelAndView("exame");
-		List<Exame> exames = repository.findAll();
-		mv.addObject("exames",exames);
-		mv.addObject("maxDate" ,LocalDate.now());
-		Pageable page;
-		return mv;
+		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+		return service.listExames(0, usuarioLogado.getId());
+	}
+	
+	@GetMapping("/{paginaAtual}")
+	public ModelAndView listExamesPaginado(HttpSession session, @PathVariable Integer paginaAtual) {
+		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+		return service.listExames(paginaAtual, usuarioLogado.getId());
 	}
 	
 	@PostMapping
 	public ModelAndView adicionar(Exame exame, HttpSession session, @RequestParam("imagem") MultipartFile mpFile) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/exames");
-		String fileName = StringUtils.cleanPath(mpFile.getOriginalFilename());
-		exame.setUsuario((Usuario) session.getAttribute("usuarioLogado"));
-		exame.setArquivo(fileName);
-		Exame exameSalvo = repository.save(exame);
-		String diretorio = "exame-img/" + exameSalvo.getUsuario().getId();
-		FileUploadUtil.saveFile(diretorio, fileName, mpFile);
-		return mv;
+		return service.adicionar(exame, session, mpFile);
 	}
 	
 	@GetMapping("/delete/{id}")
