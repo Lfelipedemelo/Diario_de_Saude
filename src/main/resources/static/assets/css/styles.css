@@ -11722,7 +11722,8 @@ body {
 
 .imageExame{
 	height: 220px;
-	width: 220px;
+	min-width: 250;
+	width: 285px;
 	transition: transform .5s;
 }
 
@@ -11734,3 +11735,4 @@ body {
 	height: 100%;
 	width: 100%;
 }
+
