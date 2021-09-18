@@ -8,7 +8,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.diario_de_saude.repository.VacinaRepository;
+import br.com.diario_de_saude.service.VacinaService;
 import br.com.diario_de_saude.vo.Usuario;
 import br.com.diario_de_saude.vo.Vacina;
 
@@ -25,6 +25,9 @@ public class VacinaController {
 
 	@Autowired
 	private VacinaRepository vacinaRep;
+	
+	@Autowired
+	private VacinaService service;
 
 	@GetMapping
 	public ModelAndView listVacina(HttpSession session) {
@@ -43,11 +46,9 @@ public class VacinaController {
 	}
 
 	@PostMapping
-	public String create(@Valid Vacina vacina, HttpSession session) {
-		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
-		vacina.setUsuario(usuario);
-		vacinaRep.save(vacina);
-		return "redirect:/vacinas/";
+	public ModelAndView create(@Valid Vacina vacina, HttpSession session) {
+		ModelAndView mv = service.createVacina(vacina, session);
+		return mv;
 	}
 
 	@GetMapping("/delete/{id}")

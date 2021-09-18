@@ -38,15 +38,18 @@
 						    <input type="text" class="form-control" id="inputNomeVacina" placeholder="" name="nome" required>
 						  </div>
 						  <div class="col-md-4">
-						    <label for="inputPrimeiraDose" class="form-label">Primeira dose</label>
+						    <input class="form-check-input" type="checkbox" id="dose1Confirm" name="dose1Confirm"/>
+						    <label for="dose1Confirm" class="form-label">Primeira dose</label>
 						    <input type="date" th:max="${maxDate}" class="form-control" id="inputPrimeiraDose" name="dose1"  required>
 						  </div>
 						  <div class="col-md-4">
-						    <label for="inputSegundaDose" class="form-label">Segunda dose</label>
+						  <input class="form-check-input" type="checkbox" id="dose2Confirm" name="dose2Confirm"/>
+						    <label for="dose2Confirm" class="form-label">Segunda dose</label>
 						    <input type="date" th:max=${maxDate} class="form-control" id="inputSegundaDose" name="dose2">
 						  </div>
 						  <div class="col-md-4">
-						    <label for="inputTerceiraDose" class="form-label">Terceira Dose</label>
+						  <input class="form-check-input" type="checkbox" id="dose3Confirm" name="dose3Confirm"/>
+						    <label for="dose3Confirm" class="form-label">Terceira Dose</label>
 						    <input type="date" th:max=${maxDate} class="form-control" id="inputTerceiraDose" name="dose3">
 						  </div>
 					      <div class="modal-footer">
@@ -79,10 +82,22 @@
                                     </thead>
                                     <tbody>
                                         <tr th:each="vacina : ${vacinas}">
-                                            <td th:text="${vacina.nome}">Nome</td>
-                                            <td th:text="${#dates.format(vacina.dose1, 'dd/MM/yyyy')}">Primeira Dose</td>
-                                            <td th:text="${#dates.format(vacina.dose2, 'dd/MM/yyyy')}">Segunda Dose</td>
-                                            <td th:text="${#dates.format(vacina.dose3, 'dd/MM/yyyy')}">Terceira Dose</td>
+                                            <td class="fs-6" th:text="${vacina.nome}">Nome</td>
+                                            <td class="">
+                                            	<i th:if="${vacina.dose1Confirm}" class="fas fa-check me-3 ms-1 mt-2 iconGreen"></i>
+                                            	<i th:if="${not vacina.dose1Confirm}" class="fas fa-times me-3 ms-1 mt-2 iconRed"></i>
+                                            	<label class="mt-2 fs-6" th:text="${#dates.format(vacina.dose1, 'dd/MM/yyyy')}">Primeira Dose</label>
+                                            </td>
+                                            <td class="">
+                                            	<i th:if="${vacina.dose2Confirm}" class="fas fa-check me-3 ms-1 mt-2 iconGreen"></i>
+                                            	<i th:if="${not vacina.dose2Confirm}" class="fas fa-times me-3 ms-1 mt-2 iconRed"></i>
+                                            	<label class="mt-2 fs-6" th:text="${#dates.format(vacina.dose2, 'dd/MM/yyyy')}">Segunda Dose</label>
+                                            </td>
+                                            <td class="">
+                                            	<i id="dose3confirm" th:if="${vacina.dose3Confirm}" class="fas fa-check me-3 ms-1 mt-2 iconGreen"></i>
+                                            	<i th:if="${not vacina.dose3Confirm}" class="fas fa-times me-3 ms-1 mt-2 iconRed"></i>
+                                            	<label class="mt-2 fs-6" th:text="${#dates.format(vacina.dose3, 'dd/MM/yyyy')}">Terceira Dose</label>
+                                            </td>
 <!--                                             <td th:text="${vacina.reforco}">Reforço</td> -->
                                             <td>
 	                                        	 <div class="btn-group">

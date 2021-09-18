@@ -31,7 +31,7 @@ public class ExameService {
 		if (paginaAtual == null) {
 			paginaAtual = 0;
 		}
-		Pageable pageable = PageRequest.of(paginaAtual, 2);
+		Pageable pageable = PageRequest.of(paginaAtual, Constants.EXAMES_POR_PAGINA);
 		List<Exame> exames = repository.findByUsuarioId((long) idUsuario, pageable);
 		mv.addObject("nPaginas", getNumeroDePaginas(idUsuario));
 		mv.addObject("exames", exames);

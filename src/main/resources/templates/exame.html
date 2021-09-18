@@ -71,17 +71,20 @@
 				  <div class="gy-2" th:each="exame : ${exames}">
 				  <div class="col">
 				  <div class="card">
-				    <img class="img-thumbnail mx-auto my-2" th:src="@{${exame.getCaminhoImagem}}" style="height: 220px; width: 220px;" />
+				  <a class="mx-auto my-2" data-bs-toggle="modal"
+							th:attr="data-bs-target='#modalVerImagem'+${exame.id}">
+				    <img class="img-thumbnail imageExame" th:src="@{${exame.getCaminhoImagem}}"/>
+				  </a>
 				    <div class="card-body">
 				      <h5 class="card-title" th:text="${exame.nome}"></h5>
 				      <div class="btn-group me-2">
-<!-- 													<a type="button" class="btn btn-outline-primary" -->
-<!-- 													data-bs-toggle="modal" data-bs-target="#modalEditarVacina" -->
-<!-- 													th:attr="data-bs-target='#modalEditarVacina'+${vacina.id}">Editar</a> -->
-													<a class="btn btn-outline-danger" data-bs-toggle="modal"
-													th:attr="data-bs-target='#modalExcluirExame'+${exame.id}">Deletar</a>
-												<div th:replace="~{fragments/delete-modal :: deleteExame}"></div>
-<!-- 												<div th:replace="~{fragments/edit-modal :: editVacina}"></div> -->
+							<a type="button" class="btn btn-outline-primary"
+							data-bs-toggle="modal" th:attr="data-bs-target='#modalDescricao'+${exame.id}">Descrição</a>
+							<a class="btn btn-outline-danger" data-bs-toggle="modal"
+							th:attr="data-bs-target='#modalExcluirExame'+${exame.id}">Deletar</a>
+						<div th:replace="~{fragments/delete-modal :: deleteExame}"></div>
+						<div th:replace="~{fragments/exame-modal :: imageExame}"></div>
+					<div th:replace="~{fragments/exame-modal :: descricaoExame}"></div>
 					</div>
 				    </div>
 				    <div class="card-footer">

@@ -11711,3 +11711,26 @@ body {
 	background-repeat: no-repeat;
 	background-position: center;
 }
+
+.iconGreen{
+	color: green;
+}
+
+.iconRed{
+	color: red;
+}
+
+.imageExame{
+	height: 220px;
+	width: 220px;
+	transition: transform .5s;
+}
+
+.imageExame:hover{
+	transform: scale(1.03);
+}
+
+.imageExameZoom{
+	height: 100%;
+	width: 100%;
+}
