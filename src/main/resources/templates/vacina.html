@@ -83,17 +83,17 @@
                                     <tbody>
                                         <tr th:each="vacina : ${vacinas}">
                                             <td class="fs-6" th:text="${vacina.nome}">Nome</td>
-                                            <td class="">
+                                            <td>
                                             	<i th:if="${vacina.dose1Confirm}" class="fas fa-check me-3 ms-1 mt-2 iconGreen"></i>
                                             	<i th:if="${not vacina.dose1Confirm}" class="fas fa-times me-3 ms-1 mt-2 iconRed"></i>
                                             	<label class="mt-2 fs-6" th:text="${#dates.format(vacina.dose1, 'dd/MM/yyyy')}">Primeira Dose</label>
                                             </td>
-                                            <td class="">
+                                            <td>
                                             	<i th:if="${vacina.dose2Confirm}" class="fas fa-check me-3 ms-1 mt-2 iconGreen"></i>
                                             	<i th:if="${not vacina.dose2Confirm}" class="fas fa-times me-3 ms-1 mt-2 iconRed"></i>
                                             	<label class="mt-2 fs-6" th:text="${#dates.format(vacina.dose2, 'dd/MM/yyyy')}">Segunda Dose</label>
                                             </td>
-                                            <td class="">
+                                            <td>
                                             	<i id="dose3confirm" th:if="${vacina.dose3Confirm}" class="fas fa-check me-3 ms-1 mt-2 iconGreen"></i>
                                             	<i th:if="${not vacina.dose3Confirm}" class="fas fa-times me-3 ms-1 mt-2 iconRed"></i>
                                             	<label class="mt-2 fs-6" th:text="${#dates.format(vacina.dose3, 'dd/MM/yyyy')}">Terceira Dose</label>
