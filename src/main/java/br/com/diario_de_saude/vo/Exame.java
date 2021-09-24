@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import br.com.diario_de_saude.utils.Constants;
+
 @Entity
 public class Exame {
 
@@ -81,7 +83,7 @@ public class Exame {
 		if (arquivo == null) {
 			return null;
 		} else {
-			return "/exame-img/" + usuario.getId() + "/" + arquivo;
+			return Constants.CAMINHO_IMAGEM + arquivo;
 		}
 	}
 

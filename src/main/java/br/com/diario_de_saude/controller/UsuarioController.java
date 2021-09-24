@@ -25,8 +25,9 @@ public class UsuarioController {
 	private UsuarioRepository rep;
 
 	@GetMapping("/dashboard")
-	public String dashboard() {
-		return "home";
+	public ModelAndView dashboard() {
+		ModelAndView mv = new ModelAndView("home");
+		return mv;
 	}
 
 	@GetMapping("/")
@@ -54,7 +55,7 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/login")
-	public ModelAndView login(@Valid Usuario usuario, HttpSession session, BindingResult result)
+	public ModelAndView login(@Valid Usuario usuario, HttpSession session)
 			throws NoSuchAlgorithmException {
 		ModelAndView mv = new ModelAndView("login");
 		usuario = rep.verificarLogin(usuario.getEmail(), usuario.getSenha());

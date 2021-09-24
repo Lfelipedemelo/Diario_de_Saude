@@ -8,7 +8,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-       <form class="row g-3 needs-validation" action="/vacinas/update" method="POST">
+       <form class="row g-3" action="/vacinas/update" method="POST">
        <input th:value="${vacina.id}" type="hidden" id="inputIdVacina" name="id">
 		  <div class="col-12">
 		    <label for="inputNomeVacina" class="form-label">Nome da Vacina</label>
