@@ -16,4 +16,6 @@ public interface ExameRepository extends JpaRepository<Exame, Long> {
 	List<Exame> findByUsuarioId(Long id, Pageable pageable);
 	@Query("from Exame where usuario_id = :id")
 	List<Exame> findByUsuarioId(Long id);
+	@Query("from Exame where usuario_id = :id order by dta_exame desc")
+	List<Exame> findByUsuarioIdOrderByData(Long id);
 }

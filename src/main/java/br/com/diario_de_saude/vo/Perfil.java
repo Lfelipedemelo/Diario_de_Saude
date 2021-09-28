@@ -29,8 +29,6 @@ public class Perfil {
 	private String altura;
 	
 	private String tipoSanguineo;
-	
-	private String token;
 		
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -100,6 +98,16 @@ public class Perfil {
 	public void setDtaNascimento(Date dtaNascimento){
 		this.dtaNascimento = dtaNascimento;
 	}
+	
+	public int getIdade() {
+		if(this.getDtaNascimento() == null) {
+			return 0;
+		} else {
+			int ano = dtaNascimento.getYear();
+			Date date = new Date();
+			return date.getYear() - ano;			
+		}
+	}
 
 	@Override
 	public int hashCode() {
@@ -121,13 +129,5 @@ public class Perfil {
 		if (id != other.id)
 			return false;
 		return true;
-	}
-
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
 	}
 }

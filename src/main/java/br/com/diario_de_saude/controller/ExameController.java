@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -62,6 +63,9 @@ public class ExameController {
 	@RequestMapping(value = "/validarImagem/{path}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
 	public byte[] testphoto(@PathVariable String path, HttpSession session) throws IOException {
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+		if(usuarioLogado == null) {
+			usuarioLogado = (Usuario) session.getAttribute("usuarioValidado");
+		}
 		if(usuarioLogado != null) {
 			File f = new File("exame-img/" + usuarioLogado.getId() + "/" + path);
 			FileInputStream fis = new FileInputStream(f);
@@ -70,7 +74,6 @@ public class ExameController {
 			dis.readFully(conteudo);			
 			return conteudo;
 		} else {
-			System.out.println("ERRO");
 			return null;
 		}
 	}

@@ -23,7 +23,7 @@ public class TokenController {
 	private ModelAndView listToken(HttpSession session) {
 		ModelAndView mv = new ModelAndView("token");
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
-		mv.addObject("token", service.listToken(usuarioLogado).getCodigo());
+		mv.addObject("tokenGerado", service.listToken(usuarioLogado).getCodigo());
 		return mv;
 	}
 	
@@ -31,7 +31,7 @@ public class TokenController {
 	private ModelAndView generateToken(HttpSession session) {
 		ModelAndView mv = new ModelAndView("token");
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
-		mv.addObject("token", service.generateToken(usuarioLogado).getCodigo());
+		mv.addObject("tokenGerado", service.generateToken(usuarioLogado).getCodigo());
 		return mv;
 	}
 }

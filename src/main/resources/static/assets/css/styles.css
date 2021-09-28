@@ -11727,8 +11727,21 @@ body {
 	transition: transform .5s;
 }
 
+.imageExameMedico{
+	height: 200px;
+	min-width: 230;
+	width: 265px;
+	transition: transform .5s;
+}
+
 .imageExame:hover{
 	transform: scale(1.03);
+	cursor: pointer;
+}
+
+.imageExameMedico:hover{
+	transform: scale(1.03);
+	cursor: pointer;
 }
 
 .imageExameZoom{
@@ -11742,4 +11755,12 @@ body {
 
 .iconWhite{
 	color:white;
+}
+
+.containerExamesMedicos{
+	max-height: 550px;
+}
+
+.cardExame{
+	max-height: 80px;
 }

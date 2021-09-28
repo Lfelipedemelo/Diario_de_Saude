@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -42,12 +43,15 @@ public class ExameService {
 	public ModelAndView adicionar(Exame exame, HttpSession session, @RequestParam("imagem") MultipartFile mpFile)
 			throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/exames");
-		String fileName = StringUtils.cleanPath(mpFile.getOriginalFilename());
-		exame.setUsuario((Usuario) session.getAttribute("usuarioLogado"));
-		exame.setArquivo(fileName);
-		Exame exameSalvo = repository.save(exame);
-		String diretorio = "exame-img/" + exameSalvo.getUsuario().getId();
-		FileUploadUtil.saveFile(diretorio, fileName, mpFile);
+		try {
+			String fileName = StringUtils.cleanPath(mpFile.getOriginalFilename());
+			exame.setUsuario((Usuario) session.getAttribute("usuarioLogado"));
+			exame.setArquivo(fileName);
+			Exame exameSalvo = repository.save(exame);
+			String diretorio = "exame-img/" + exameSalvo.getUsuario().getId();
+			FileUploadUtil.saveFile(diretorio, fileName, mpFile);
+		} catch (Exception e) {
+		}
 		return mv;
 	}
 
@@ -64,4 +68,9 @@ public class ExameService {
 		return nPaginas;
 	}
 
+	public List<Exame> getExames(long idUsuario){
+		List<Exame> exames = repository.findByUsuarioIdOrderByData((long) idUsuario);
+		return exames;
+	}
+	
 }

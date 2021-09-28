@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.diario_de_saude.repository.TokenRepository;
+import br.com.diario_de_saude.vo.Perfil;
 import br.com.diario_de_saude.vo.Token;
+import br.com.diario_de_saude.vo.Usuario;
 
 @Service
 public class MedicoService {
