@@ -33,7 +33,7 @@ public class medicoController {
 		return mv;	
 	}
 	
-	@PostMapping("/tokenAuthentication")
+	@PostMapping("/prontuario")
 	public ModelAndView authentication(@RequestParam("codigo") String codigo, HttpSession session) throws IOException {
 		ModelAndView mv = new ModelAndView("acessoToken");
 		Token validToken = service.authentication(codigo);
@@ -41,10 +41,12 @@ public class medicoController {
 			mv.addObject("msg", "Código de acesso invalido!");
 		} else {
 			session.setAttribute("usuarioValidado", validToken.getUsuario());
-			mv.addObject("exames", exameService.getExames(validToken.getUsuario().getId()));
+			mv.addObject("exames", service.getExames(validToken.getUsuario().getId()));
+			mv.addObject("vacinas", service.getVacinas(validToken.getUsuario().getId(), ""));
 			mv.setViewName("prontuario");
 		}
 		return mv;
 	}
+	
 
 }

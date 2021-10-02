@@ -1,40 +1,46 @@
 <div th:fragment="editVacina" th:id="modalEditarVacina+${vacina.id}" class="modal fade" data-bs-backdrop="static"
-	data-bs-keyboard="false" tabindex="-1"
-	aria-labelledby="modalEditarVacina" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Editar Vacina</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-       <form class="row g-3" action="/vacinas/update" method="POST">
-       <input th:value="${vacina.id}" type="hidden" id="inputIdVacina" name="id">
-		  <div class="col-12">
-		    <label for="inputNomeVacina" class="form-label">Nome da Vacina</label>
-		    <input th:value="${vacina.nome}" type="text" class="form-control" id="inputNomeVacina" placeholder="" name="nome" required>
-		  </div>
-		  <div class="col-md-4">
-		  	<input th:checked="${vacina.dose1Confirm}" class="form-check-input" type="checkbox" id="dose1ConfirmEdit" name="dose1Confirm"/>
-		    <label for="dose1ConfirmEdit" class="form-label">Primeira dose</label>
-		    <input th:value="${#dates.format(vacina.dose1, 'yyyy-MM-dd')}" type="date" th:max="${maxDate}" class="form-control" id="inputPrimeiraDose" name="dose1"  required>
-		  </div>
-		  <div class="col-md-4">
-		  <input th:checked="${vacina.dose2Confirm}" class="form-check-input" type="checkbox" id="dose2ConfirmEdit" name="dose2Confirm"/>
-		    <label for="dose2ConfirmEdit" class="form-label">Segunda dose</label>
-		    <input th:value="${#dates.format(vacina.dose2, 'yyyy-MM-dd')}" type="date" th:max=${maxDate} class="form-control" id="inputSegundaDose" name="dose2">
-		  </div>
-		  <div class="col-md-4">
-		  <input th:checked="${vacina.dose3Confirm}" class="form-check-input" type="checkbox" id="dose3ConfirmEdit" name="dose3Confirm"/>
-		    <label for="dose3ConfirmEdit" class="form-label">Terceira Dose</label>
-		    <input th:value="${#dates.format(vacina.dose3, 'yyyy-MM-dd')}" type="date" th:max=${maxDate} class="form-control" id="inputTerceiraDose" name="dose3">
-		  </div>
-	      <div class="modal-footer">
-	        <button type="submit" class="btn btn-primary">Salvar</button>
-	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-	      </div>
-		</form>
-      </div>
-    </div>
-  </div>
+	data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalEditarVacina" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="staticBackdropLabel">Editar Vacina</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form class="row g-3" action="/vacinas/update" method="POST">
+					<input th:value="${vacina.id}" type="hidden" id="inputIdVacina" name="id">
+					<div class="col-12">
+						<label for="inputNomeVacina" class="form-label">Nome da Vacina</label>
+						<input th:value="${vacina.nome}" type="text" class="form-control" id="inputNomeVacina"
+							placeholder="" name="nome" required>
+					</div>
+					<div class="col-md-4">
+						<input th:checked="${vacina.dose1Confirm}" class="form-check-input" type="checkbox"
+							id="dose1ConfirmEdit" name="dose1Confirm" />
+						<label for="dose1ConfirmEdit" class="form-label">Primeira dose</label>
+						<input th:value="${#dates.format(vacina.dose1, 'yyyy-MM-dd')}" type="date" th:max="${maxDate}"
+							class="form-control" id="inputPrimeiraDose" name="dose1" required>
+					</div>
+					<div class="col-md-4">
+						<input th:checked="${vacina.dose2Confirm}" class="form-check-input" type="checkbox"
+							id="dose2ConfirmEdit" name="dose2Confirm" />
+						<label for="dose2ConfirmEdit" class="form-label">Segunda dose</label>
+						<input th:value="${#dates.format(vacina.dose2, 'yyyy-MM-dd')}" type="date" th:max=${maxDate}
+							class="form-control" id="inputSegundaDose" name="dose2">
+					</div>
+					<div class="col-md-4">
+						<input th:checked="${vacina.dose3Confirm}" class="form-check-input" type="checkbox"
+							id="dose3ConfirmEdit" name="dose3Confirm" />
+						<label for="dose3ConfirmEdit" class="form-label">Terceira Dose</label>
+						<input th:value="${#dates.format(vacina.dose3, 'yyyy-MM-dd')}" type="date" th:max=${maxDate}
+							class="form-control" id="inputTerceiraDose" name="dose3">
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary">Salvar</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>

@@ -67,10 +67,5 @@ public class ExameService {
 		}
 		return nPaginas;
 	}
-
-	public List<Exame> getExames(long idUsuario){
-		List<Exame> exames = repository.findByUsuarioIdOrderByData((long) idUsuario);
-		return exames;
-	}
 	
 }

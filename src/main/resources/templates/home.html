@@ -1,26 +1,29 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="https://www.thymeleaf.org">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>Diário de Saúde</title>
-       	<link rel="stylesheet" th:href="@{/assets/css/styles.css}" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
-    </head>
-    <body class="sb-nav-fixed">
-	<div th:replace="fragments/navigation :: top-nav-bar"></div>
-        <div id="layoutSidenav">
-		<div th:replace="fragments/sidebar :: side-bar"></div>
-            <div id="layoutSidenav_content">
-             <main>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 
-             </main>
-				<div th:replace="fragments/footer :: footer"></div>
-            </div>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Diário de Saúde</title>
+    <link rel="stylesheet" th:href="@{/assets/css/styles.css}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+</head>
+
+<body class="sb-nav-fixed">
+    <div th:replace="fragments/navigation :: top-nav-bar"></div>
+    <div id="layoutSidenav">
+        <div th:replace="fragments/sidebar :: side-bar"></div>
+        <div id="layoutSidenav_content">
+            <main>
+
+            </main>
+            <div th:replace="fragments/footer :: footer"></div>
         </div>
-            
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script th:src="@{/assets/js/scripts.js}"></script>
-    </body>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script th:src="@{/assets/js/scripts.js}"></script>
+</body>
+
 </html>

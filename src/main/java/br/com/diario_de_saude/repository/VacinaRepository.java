@@ -13,4 +13,6 @@ public interface VacinaRepository extends JpaRepository<Vacina, Long> {
 	
 	@Query("from Vacina where usuario_id = :id")
 	List<Vacina> findAllByUsuarioId(Long id);
+	@Query("from Vacina where usuario_id = :idUsuario and nome like %:filtro%")
+	List<Vacina> findByUsusarioIdFiltro(long idUsuario, String filtro);
 }

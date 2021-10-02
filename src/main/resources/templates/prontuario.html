@@ -91,18 +91,38 @@
                             <div class="card h-100">
                                 <div class="card-body">
                                     <div class="overflow-auto" style="height: 200px;">
-                                        <h6 class="d-flex align-items-center mb-3">Vacinas</h6>
-                                        <small>Vacina01</small>
-                                        <div class="mb-2" style="height: 5px">
-                                        </div>
-                                        <small>Vacina02</small>
-                                        <div class="mb-2" style="height: 5px">
-                                        </div>
-                                        <small>Vacina03</small>
-                                        <div class="mb-2" style="height: 5px">
-                                        </div>
-                                        <small>Vacina04</small>
-                                        <div class="mb-2" style="height: 5px">
+                                        <div>
+                                        <table class="table table-borderless">
+										  <thead>
+										    <tr>
+										      <th scope="col">Vacina</th>
+										      <th scope="col">1ª Dose</th>
+										      <th scope="col">2ª Dose</th>
+										      <th scope="col">3ª Dose</th>
+										    </tr>
+										  </thead>
+										  <tbody th:each="vacina : ${vacinas}">
+										    <tr>
+										      <td th:text="${vacina.nome}"></td>
+										      <td class="text-center">
+											    <i th:if="${vacina.dose1Confirm}" class="fas fa-check iconGreen"></i>
+												<i th:if="${not vacina.dose1Confirm}"
+												class="fas fa-times iconRed"></i>
+										      </td>
+										      <td class="text-center">
+											    <i th:if="${vacina.dose2Confirm}" class="mx-auto fas fa-check iconGreen"></i>
+												<i th:if="${not vacina.dose2Confirm}"
+												class="fas fa-times iconRed"></i>
+										      </td>
+										      <td class="text-center">
+											    <i id="dose3confirm" th:if="${vacina.dose3Confirm}"
+												class="fas fa-check iconGreen"></i>
+												<i th:if="${not vacina.dose3Confirm}"
+												class="fas fa-times iconRed"></i>
+										      </td>
+										    </tr>
+										  </tbody>
+										</table>
                                         </div>
                                     </div>
                                 </div>

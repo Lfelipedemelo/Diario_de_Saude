@@ -11764,3 +11764,50 @@ body {
 .cardExame{
 	max-height: 80px;
 }
+
+.textoDose{
+	float: inherit;
+	font-size: small;
+}
+
+.perfilThumbnail {
+    position: relative;
+    width: 50%;
+}
+
+.perfilImage {
+  opacity: 1;
+  display: inline-block;
+  transition: .5s ease;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  object-fit: cover;
+}
+
+.perfilOverlay {
+  width: 100px;
+  height: 100px;
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute; 
+  top: 50%;
+  left: 50%;  
+  transform: translate(-50%, -50%);  
+  background-image: url('/assets/img/upload.png');
+  background-repeat: no-repeat;
+  background-size: 50px 50px;
+  background-position: center center;
+  
+}
+
+.perfilThumbnail:hover .perfilImage {
+  opacity: .7;
+}
+
+.perfilThumbnail:hover .perfilOverlay {
+  opacity: .9;
+  cursor: pointer;
+}

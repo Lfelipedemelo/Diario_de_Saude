@@ -1,5 +1,6 @@
 package br.com.diario_de_saude.vo;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -29,6 +30,8 @@ public class Perfil {
 	private String altura;
 	
 	private String tipoSanguineo;
+	
+	private ArrayList<String> alergias;
 		
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -105,6 +108,9 @@ public class Perfil {
 		} else {
 			int ano = dtaNascimento.getYear();
 			Date date = new Date();
+			if(dtaNascimento.getMonth() > date.getMonth()) {
+				return date.getYear() - ano -1;
+			}
 			return date.getYear() - ano;			
 		}
 	}
@@ -130,4 +136,14 @@ public class Perfil {
 			return false;
 		return true;
 	}
+
+	public ArrayList<String> getAlergias() {
+		return alergias;
+	}
+
+	public void setAlergias(ArrayList<String> alergias) {
+		this.alergias = alergias;
+	}
+
+
 }

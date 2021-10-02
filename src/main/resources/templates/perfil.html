@@ -21,11 +21,20 @@
 		          </div>
 		        </div>
 		      </div>
-		      <div class="card">
-		      <div class="card-header" style="height: 30px">
-			  </div>
+		      <div class="card bg-light">
 			  <div class="card-body">
 			<form action="/perfil" method="POST" id="form_perfil" class="row g-3">
+			<div class="row">
+			<div class="col-sm-4 my-4">
+			<div class="perfilThumbnail mx-auto">
+				<img class="perfilImage imagePerfil" src="https://www.viajantecomum.com/wp-content/uploads/2020/08/frases-para-foto-sozinha-tumblr-1095x730.jpg">
+			<div class="perfilOverlay" id="profileImage" ></div>
+			</div>
+				<input id="imageUpload" type="file" 
+      			name="fotoPerfil" hidden>
+			</div>
+			<div class="col-sm-8 my-3">
+			<div class="row">
 			  <div class="col-md-6">
 			    <label for="inputNome" class="form-label">Nome</label>
 			    <input name="nome" th:value="${session.usuarioLogado?.perfil.nome}" type="text" class="form-control" id="inputNome">
@@ -34,13 +43,15 @@
 			    <label for="inputSobrenome" class="form-label">Sobrenome</label>
 			    <input name="sobrenome" th:value="${session.usuarioLogado?.perfil.sobrenome}" type="text" class="form-control" id="inputSobrenome">
 			  </div>
-			  <div class="col-6">
+			  <div class="col-6 mt-4">
 			    <label for="inputDataNascimento" class="form-label">Data de Nascimento</label>
 			    <input th:value="${#dates.format(session.usuarioLogado?.perfil.dtaNascimento, 'dd/MM/yyyy')}" name="dtaNascimento" type="text" data-mask="00/00/0000" class="form-control" id="inputDataNascimento" placeholder="dd/MM/aaaa">
 			  </div>
-			  <div class="col-6">
+			  <div class="col-6 mt-4">
 			    <label for="inputTelefone" class="form-label">Telefone</label>
 			    <input th:value="${session.usuarioLogado?.perfil.telefone}" name="telefone" type="text" data-mask="(00) 00000-0000" class="form-control" id="inputAddress" placeholder="(xx)xxxxx-xxxx">
+			  </div>
+			  </div>
 			  </div>
 			  <div class="col-4">
 			    <label for="inputTipoSanguineo" class="form-label">Tipo Sanguineo</label>
@@ -67,10 +78,20 @@
 			    <label for="inputAltura" class="form-label">Altura</label>
 			    <input th:value="${session.usuarioLogado?.perfil.altura}" name="altura" data-mask="0.00" type="number" max="3" step="0.01" class="form-control" id="inputAltura">
 			  </div>
-			  <div class="col-12">
-			    <button type="submit" class="btn btn-primary my-2">Salvar</button>
 			  </div>
 			</form>
+			<h3 class="text-center bg-secondary bg-gradient text-light mt-5">Alergias:</h3>
+			<div class="col-md-4 ">
+			  <div class="input-group mb-3">
+				  <input type="text" class="form-control" placeholder="Alergia" aria-label="Alergia" aria-describedby="basic-addon2">
+				  <div class="input-group-append">
+				    <button class="btn btn-outline-secondary" type="button">Adicionar</button>
+				  </div>
+			   </div>
+			   <div class="col-md-12" th:each="alergia : ${session.usuarioLogado?.perfil.alergias}">
+			   	<h2 th:text="#{alergia}"></h2>
+			   </div>
+			 </div>
 			</div>
 			</div>
 			<div th:replace="fragments/footer :: footer"></div>
@@ -83,9 +104,14 @@
         <script src="/assets/js/scripts.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
-		<input th:value="${session.usuarioLogado?.perfil.tipoSanguineo}" id="tipoSanguineoLeitura"/>
-		<input th:value="${session.usuarioLogado?.perfil.sexo}" id="sexoLeitura"/>
+		<input th:value="${session.usuarioLogado?.perfil.tipoSanguineo}" id="tipoSanguineoLeitura" hidden="true"/>
+		<input th:value="${session.usuarioLogado?.perfil.sexo}" id="sexoLeitura" hidden="true"/>
 		<script>
+		
+			$("#profileImage").click(function(e) {
+			    $("#imageUpload").click();
+			});
+			
 			let tipoSanguineo = document.getElementById("tipoSanguineoLeitura").value;
 			let campoSelect = document.getElementById("inputTipoSanguineo");
 			for(let i = 0; i < campoSelect.options.length; i++){
