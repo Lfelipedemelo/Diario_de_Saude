@@ -12,6 +12,8 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import br.com.diario_de_saude.utils.Constants;
+
 @Entity
 public class Perfil {
 
@@ -32,6 +34,8 @@ public class Perfil {
 	private String tipoSanguineo;
 	
 	private ArrayList<String> alergias;
+	
+	private String arquivo;
 		
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -114,6 +118,14 @@ public class Perfil {
 			return date.getYear() - ano;			
 		}
 	}
+	
+	public String getCaminhoImagem() {
+		if (arquivo == null) {
+			return null;
+		} else {
+			return Constants.CAMINHO_IMAGEM + arquivo;
+		}
+	}
 
 	@Override
 	public int hashCode() {
@@ -143,6 +155,14 @@ public class Perfil {
 
 	public void setAlergias(ArrayList<String> alergias) {
 		this.alergias = alergias;
+	}
+
+	public String getArquivo() {
+		return arquivo;
+	}
+
+	public void setArquivo(String arquivo) {
+		this.arquivo = arquivo;
 	}
 
 
