@@ -22,8 +22,11 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
-                                <img src="https://st.depositphotos.com/1052233/2815/v/600/depositphotos_28158459-stock-illustration-male-default-profile-picture.jpg"
-                                    alt="Admin" class="rounded-circle" width="150">
+<!--                                 <img src="https://st.depositphotos.com/1052233/2815/v/600/depositphotos_28158459-stock-illustration-male-default-profile-picture.jpg" -->
+<!--                                     alt="Admin" class="rounded-circle" width="150"> -->
+                                    
+                                <img th:if="not ${session.usuarioValidado.perfil.arquivo}" class="perfilImage imagePerfil" src="/assets/img/empty-user.png">
+								<img th:if="${session.usuarioValidado.perfil.arquivo}" class="perfilImage imagePerfil" th:src="@{${session.usuarioValidado.perfil.getCaminhoImagem}}">
                             </div>
                             <div class="d-flex flex-column">
                                 <div class="mt-2 align-items-start">

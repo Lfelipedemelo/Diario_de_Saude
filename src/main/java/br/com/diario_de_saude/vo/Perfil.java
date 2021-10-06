@@ -123,7 +123,7 @@ public class Perfil {
 		if (arquivo == null) {
 			return null;
 		} else {
-			return Constants.CAMINHO_IMAGEM + arquivo;
+			return Constants.CAMINHO_IMAGEM_PERFIL + arquivo;
 		}
 	}
 

@@ -67,8 +67,8 @@
         
         <div class="b-example-divider" id="areaMedica"></div>
         <div class="px-4 py-5 my-2 text-center" style="height: 90vh;">
-        <div class="d-flex justify-content-center">
-            <div class="col-5 alert alert-danger fw-bold" th:if="${msgAreaMedica}" th:text="${msgAreaMedica}"></div>
+        <div class="d-flex justify-content-center" th:if="${msgAreaMedica}">
+            <div class="col-5 alert alert-danger fw-bold" th:text="${msgAreaMedica}"></div>
         </div>
             <h1 class="display-5 fw-bold lh-1">Aréa Médica</h1>
           <img src="/assets/img/login-area-medica.png" class="d-block mx-lg-auto" alt="Area Medica"
@@ -93,13 +93,13 @@
         <div class="container col-xxl-8 px-4 py-5">
           <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
             <div class="col-10 col-sm-8 col-lg-6">
-            <h1 class="display-5 fw-bold text-center">Registrar</h1>
+            <h1 class="display-5 fw-bold text-center"></h1>
              <img class="d-block mx-auto mb-4 img-fluid" src="/assets/img/caderneta.png" alt="Caderneta de cadastro">
             </div>
             <div class="col-lg-6">
             <form action="/register" method="POST">
               <div class="alert alert-danger text-center" th:if="${msgError}" th:text="${msgError}"></div>
-              <h3 class="display-5 text-center mb-5">Informações</h3>
+              <h3 class="display-5 text-center mb-5">Registrar</h3>
               <div class="row mb-3">
                 <div class="col-md-6">
                   <div class="form-floating mb-3 mb-md-0">
@@ -146,11 +146,17 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
-              	<small class="text-muted text-end">*Todos os campos são obrigatórios</small>
+              <div class="row col-12 mb-3">
+              <div class="col-6 ps-3">
+              	<input class="form-check-input" type="checkbox" value="" id="termosCheckbox" required="required">
+				  <label class="form-check-label" for="termosCheckbox">
+				    Eu aceito os termos
+				  </label>
+				 </div>
+              	<small class="col-6 text-muted text-end">*Todos os campos são obrigatórios</small>
               </div>
               <div class="">
-                <div class="text-start"><button type="submit" class="btn btn-primary btn-block btn-lg">Registar-se</button></div>
+                <div class="text-start"><button type="submit" class="btn btn-primary btn-block btn-lg">Registrar-se</button></div>
               </div>
             </form>
               
