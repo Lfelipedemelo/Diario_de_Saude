@@ -21,10 +21,7 @@
                 <div class="col-md-3 mb-3">
                     <div class="card">
                         <div class="card-body">
-                            <div class="d-flex justify-content-center">
-<!--                                 <img src="https://st.depositphotos.com/1052233/2815/v/600/depositphotos_28158459-stock-illustration-male-default-profile-picture.jpg" -->
-<!--                                     alt="Admin" class="rounded-circle" width="150"> -->
-                                    
+                            <div class="d-flex justify-content-center">                                    
                                 <img th:if="not ${session.usuarioValidado.perfil.arquivo}" class="perfilImage imagePerfil" src="/assets/img/empty-user.png">
 								<img th:if="${session.usuarioValidado.perfil.arquivo}" class="perfilImage imagePerfil" th:src="@{${session.usuarioValidado.perfil.getCaminhoImagem}}">
                             </div>
@@ -52,8 +49,9 @@
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <div class="card mb-3 containerExamesMedicos overflow-auto">
+                    <div class="card mb-3 containerExamesMedicos overflow-auto min-height500">
                         <div class="card-body">
+                          <h2 class="textExameEmpty p-4 my-auto mx-auto text-muted" th:if="${exames.size} == 0">Este usuário não possuí exames cadastrados!</h2>
                             <div class="pb-2">
                                 <div class="row row-cols-3">
                                     <div class="gy-3" th:each="exame : ${exames}">
@@ -129,6 +127,7 @@
 										    </tr>
 										  </tbody>
 										</table>
+										<h5 class="textExameEmpty p-4 my-auto mx-auto text-muted text-center" th:if="${vacinas.size} == 0">Este usuário não possuí vacinas cadastradas!</h5>
                                         </div>
                                     </div>
                                 </div>

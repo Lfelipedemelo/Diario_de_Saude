@@ -25,21 +25,13 @@
 			  <div class="card-body">
 			<form action="/perfil" method="POST" id="form_perfil" class="row g-3" enctype="multipart/form-data">
 			<div class="row">
-			<div th:if="${session.usuarioLogado.perfil.arquivo}" class="col-sm-4 my-4">
+			<div class="col-sm-4 my-4">
 			<div class="perfilThumbnail mx-auto">
-				<img th:if="not ${session.usuarioLogado.perfil.arquivo}" class="perfilImage imagePerfil" src="/assets/img/empty-user.png">
-				<img th:if="${session.usuarioLogado.perfil.arquivo}" class="perfilImage imagePerfil" th:src="@{${session.usuarioLogado.perfil.getCaminhoImagem}}">
-			<div class="perfilOverlay" id="profileImage" ></div>
+				<img id="fotoPerfilDefault" th:if="not ${session.usuarioLogado.perfil.arquivo}" class="perfilImage imagePerfil" src="/assets/img/empty-user.png">
+				<img id="fotoUsuarioLogado" th:if="${session.usuarioLogado.perfil.arquivo}" class="perfilImage imagePerfil" th:src="@{${session.usuarioLogado.perfil.getCaminhoImagem}}">
+			<div class="perfilOverlay heightEWidth100" id="profileImage" ></div>
 			</div>
-				<input id="imageUpload" type="file" 
-      			name="fotoPerfil" hidden>
-			</div>
-			<div th:if="not ${session.usuarioLogado.perfil.arquivo}" class="col-sm-4 my-4">
-			<div class="perfilThumbnail mx-auto">
-				<img class="perfilImage imagePerfil" src="https://www.viajantecomum.com/wp-content/uploads/2020/08/frases-para-foto-sozinha-tumblr-1095x730.jpg">
-			<div class="perfilOverlay" id="profileImage" ></div>
-			</div>
-				<input id="imageUpload" type="file" 
+				<input id="imageUpload" type="file" onchange="file_changed()"
       			name="imagem" accept="image/png, image/jpeg" hidden>
 			</div>
 			<div class="col-sm-8 my-3">
@@ -137,6 +129,23 @@
 					sexoSelect.options[i].selected = true;
 				}
 			}
+			
+			function file_changed(){
+				  var selectedFile = document.getElementById('imageUpload').files[0];
+				  var img = document.getElementById('fotoUsuarioLogado')
+				  var img2 = document.getElementById('fotoPerfilDefault')
+
+				  var reader = new FileReader();
+				  reader.onload = function(){
+				     img.src = this.result
+				  }
+				  var reader2 = new FileReader();
+				  reader2.onload = function(){
+				     img2.src = this.result
+				  }
+				  reader.readAsDataURL(selectedFile);
+				  reader2.readAsDataURL(selectedFile);
+				 }
 		</script>
     </body>
 </html>

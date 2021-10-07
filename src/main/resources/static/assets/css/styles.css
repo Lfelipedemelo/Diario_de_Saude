@@ -11797,7 +11797,7 @@ body {
   top: 50%;
   left: 50%;  
   transform: translate(-50%, -50%);  
-  background-image: url('/assets/img/upload.png');
+  background-image: url('/assets/img/camera-solid.svg');
   background-repeat: no-repeat;
   background-size: 50px 50px;
   background-position: center center;
@@ -11824,4 +11824,19 @@ body {
 .logoLogin {
 	max-height: 250px;
 	max-width: 250px;
+}
+
+.min-height500{
+	min-height: 500px;
+}
+
+.textExameEmpty{
+	width: auto;
+	height: 100%;
+}
+
+.heightEWidth100{
+	height: 100%;
+	width: 100%;
+	border-radius: 50%;
 }
