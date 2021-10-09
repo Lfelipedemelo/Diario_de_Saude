@@ -1,6 +1,7 @@
 package br.com.diario_de_saude.service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,7 +11,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -44,13 +44,16 @@ public class ExameService {
 			throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/exames");
 		try {
-			String fileName = StringUtils.cleanPath(mpFile.getOriginalFilename());
+			Date date = new Date();
+			System.out.println(mpFile.getOriginalFilename());
+			String fileName = String.valueOf(date.getTime()) + "." + mpFile.getOriginalFilename().substring(mpFile.getOriginalFilename().length() - 3, mpFile.getOriginalFilename().length());
 			exame.setUsuario((Usuario) session.getAttribute("usuarioLogado"));
 			exame.setArquivo(fileName);
 			Exame exameSalvo = repository.save(exame);
 			String diretorio = "exame-img/" + exameSalvo.getUsuario().getId();
 			FileUploadUtil.saveFile(diretorio, fileName, mpFile);
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return mv;
 	}
