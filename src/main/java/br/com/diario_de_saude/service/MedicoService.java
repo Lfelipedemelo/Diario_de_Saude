@@ -38,10 +38,12 @@ public class MedicoService {
 
 		date.setMinutes(validDate.getMinutes());;
 		
-		if(validDate.getHours() < date.getHours() + 2) {
+		if(validDate.getHours() < date.getHours() + 2
+				&& validDate.getDay() == date.getDay()
+				&& validDate.getMonth() == date.getMonth()
+				&& validDate.getYear() == date.getYear()) {
 			return true;
 		}
-		System.out.println("validDate " + validDate.getHours() + "\ndate " + date.getHours());
 		return false;
 	}
 	

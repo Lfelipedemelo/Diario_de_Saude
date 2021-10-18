@@ -97,36 +97,59 @@
              <img class="d-block mx-auto mb-4 img-fluid" src="/assets/img/caderneta.png" alt="Caderneta de cadastro">
             </div>
             <div class="col-lg-6">
-            <form action="/register" method="POST">
-              <div class="alert alert-danger text-center" th:if="${msgError}" th:text="${msgError}"></div>
+            <form class="needs-validation" action="/register" method="POST" novalidate>
               <h3 class="display-5 text-center mb-5">Registrar</h3>
               <div class="row mb-3">
                 <div class="col-md-6">
                   <div class="form-floating mb-3 mb-md-0">
                     <input name="perfil.nome" class="form-control" id="inputFirstName" type="text"
-                      placeholder="Digite seu nome" required />
+                      placeholder="Digite seu nome" minlength="3" required/>
                     <label for="inputFirstName">Nome</label>
+                    <div class="invalid-feedback">
+				      Nome precisa ter mais de 3 letras
+				    </div>
+				    <div class="valid-feedback">
+				      Nome valido!
+				    </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-floating">
                     <input name="perfil.sobrenome" class="form-control" id="inputLastName" type="text"
-                      placeholder="Digite seu sobrenome" required />
+                      placeholder="Digite seu sobrenome" minlength="3" required />
                     <label for="inputLastName">Sobrenome</label>
+                     <div class="invalid-feedback">
+				      Sobrenome precisa ter mais de 3 letras
+				    </div>
+				    <div class="valid-feedback">
+				      Sobrenome valido!
+				    </div>
                   </div>
                 </div>
               </div>
               <div class="form-floating mb-3">
                 <input name="email" class="form-control" id="inputEmail" type="email"
-                  placeholder="exemplo@exemplo.com.br" required />
+                  placeholder="exemplo@exemplo.com.br" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required />
                 <label for="inputEmail">Email</label>
+                   <div class="invalid-feedback">
+				      Digite um email valido!
+				    </div>
+				    <div class="valid-feedback">
+				      Email valido!
+				    </div>
               </div>
               <div class="row mb-3">
                 <div class="col-md-12">
                   <div class="form-floating mb-3 mb-md-0">
                     <input name="senha" class="form-control" id="inputPassword" type="password"
-                      placeholder="Digite sua senha" required />
+                      placeholder="Digite sua senha" minlength="6" required />
                     <label for="inputPassword">Senha</label>
+                    <div class="invalid-feedback">
+				      Digite uma senha valida com no minimo 6 caracteres!
+				    </div>
+				    <div class="valid-feedback">
+				      Senha valida!
+				    </div>
                   </div>
                 </div>
               </div>
@@ -136,6 +159,12 @@
                      <input name="perfil.dtaNascimento" class="form-control" id="inputDtaNascimento" data-mask="00/00/0000"
                       placeholder="Digite sua data de nascimento" required />
                     <label for="inputDtaNascimento">Data de Nascimento</label>
+                    <div class="invalid-feedback">
+				      Digite uma data valida!
+				    </div>
+				    <div class="valid-feedback">
+				      Data valido!
+				    </div>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -143,15 +172,24 @@
                    <input name="perfil.telefone" class="form-control" id="telefone" data-mask="(00) 00000-0000"
                       placeholder="Digite sua senha" required />
                     <label for="digite seu numero de telefone">Telefone</label>
+                    <div class="invalid-feedback">
+				      Digite um telefone valido!
+				    </div>
+				    <div class="valid-feedback">
+				      Telefone valido!
+				    </div>
                   </div>
                 </div>
               </div>
               <div class="row col-12 mb-3">
               <div class="col-6 ps-3">
-              	<input class="form-check-input" type="checkbox" value="" id="termosCheckbox" required="required">
+              	<input class="form-check-input" type="checkbox" value="" id="termosCheckbox" required="required"/>
 				  <label class="form-check-label" for="termosCheckbox">
 				    Eu aceito os termos
 				  </label>
+				    <div class="invalid-feedback">
+				      Você precisa aceitar os termos para continuar!
+				    </div>
 				 </div>
               	<small class="col-6 text-muted text-end">*Todos os campos são obrigatórios</small>
               </div>
@@ -186,6 +224,27 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
   <script th:src="@{/assets/js/scripts.js}"></script>
+  <script >
+  (function () {
+	  'use strict'
+
+	  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+	  var forms = document.querySelectorAll('.needs-validation')
+
+	  // Loop over them and prevent submission
+	  Array.prototype.slice.call(forms)
+	    .forEach(function (form) {
+	      form.addEventListener('submit', function (event) {
+	        if (!form.checkValidity()) {
+	          event.preventDefault()
+	          event.stopPropagation()
+	        }
+
+	        form.classList.add('was-validated')
+	      }, false)
+	    })
+	})()
+  </script>
 </body>
 
 </html>

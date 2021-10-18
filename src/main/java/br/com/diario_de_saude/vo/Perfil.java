@@ -36,6 +36,8 @@ public class Perfil {
 	private ArrayList<String> alergias;
 	
 	private String arquivo;
+	
+	private int peso;
 		
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -163,6 +165,14 @@ public class Perfil {
 
 	public void setArquivo(String arquivo) {
 		this.arquivo = arquivo;
+	}
+
+	public Integer getPeso() {
+		return peso;
+	}
+
+	public void setPeso(Integer peso) {
+		this.peso = peso;
 	}
 
 

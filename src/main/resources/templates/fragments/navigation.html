@@ -11,19 +11,16 @@
     <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
     </div>
     <!-- Navbar-->
-    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-    <a class="nav-item nav-link me-2" id="alerts" href="#" role="button"><i class="fas fa-bell fa-fw"></i></a>
-        <li class="nav-item dropdown">
-            
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" th:href="@{/perfil}">Perfil</a></li>
-                <li>
-                    <hr class="dropdown-divider" />
-                </li>
-                <li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
-            </ul>
-        </li>
-    </ul>
+    <div class="navbar-nav ms-auto ms-md-0 me-3">
+	    <a class="nav-item nav-link me-3 position-relative" id="alerts" th:href="@{/home}">
+	    <i class="fas fa-bell fa-lg"></i>
+	    <span class="position-absolute top-1 start-100 translate-middle badge rounded-pill badge-notification bg-danger"
+	    th:if="${session.nAlertas}" th:text="${session.nAlertas}">
+	    99+
+	    </span>
+	    </a>
+	    <a class="nav-link" id="navbarDropdown" th:href="@{/logout}">
+	       <i class="fas fa-sign-out-alt fa-fw fa-lg"></i>
+	    </a>
+    </div>
 </nav>

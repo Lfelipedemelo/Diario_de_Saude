@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<title>Diário de Saúde</title>
 	<link rel="stylesheet" th:href="@{/assets/css/styles.css}" />
+	<link rel="icon" href="/assets/img/logo.png" type="image/x-icon">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 </head>
 
@@ -53,14 +54,14 @@
 									<input class="form-check-input" type="checkbox" id="dose2Confirm"
 										name="dose2Confirm" />
 									<label for="dose2Confirm" class="form-label">Segunda dose</label>
-									<input type="date" th:max=${maxDate} class="form-control" id="inputSegundaDose"
+									<input type="date" class="form-control" id="inputSegundaDose"
 										name="dose2">
 								</div>
 								<div class="col-md-4">
 									<input class="form-check-input" type="checkbox" id="dose3Confirm"
 										name="dose3Confirm" />
 									<label for="dose3Confirm" class="form-label">Terceira Dose</label>
-									<input type="date" th:max=${maxDate} class="form-control" id="inputTerceiraDose"
+									<input type="date" class="form-control" id="inputTerceiraDose"
 										name="dose3">
 								</div>
 								<div class="modal-footer">
@@ -84,10 +85,10 @@
 					<table id="datatablesSimple">
 						<thead>
 							<tr>
-								<th>Nome</th>
-								<th>Primeira Dose</th>
-								<th>Segunda Dose</th>
-								<th>Terceira Dose</th>
+								<th>Nome<i class="fas fa-sort ms-2"></th>
+								<th>Primeira Dose<i class="fas fa-sort ms-2"></th>
+								<th>Segunda Dose<i class="fas fa-sort ms-2"></th>
+								<th>Terceira Dose<i class="fas fa-sort ms-2"></th>
 								<!--                                             <th>Reforço</th> -->
 								<th>Ação</th>
 							</tr>

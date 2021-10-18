@@ -21,18 +21,13 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioRepository rep;
-
-	@GetMapping("/dashboard")
-	public ModelAndView dashboard() {
-		ModelAndView mv = new ModelAndView("home");
-		return mv;
-	}
-
+	
 	@GetMapping("/")
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("login");
 		return mv;
 	}
+	
 
 	@PostMapping("/register")
 	public ModelAndView create(@Valid Usuario usuario) {
@@ -41,7 +36,7 @@ public class UsuarioController {
 			rep.save(usuario);
 			mv.addObject("msgSuccess", "Usuário cadastrado com sucesso!");
 		} else {
-			mv.addObject("msgError", "Houve um erro durante o seu cadastro!");
+			mv.addObject("msg", "Erro ao cadastrar novo usuário!");
 		}
 		return mv;
 	}
@@ -59,7 +54,7 @@ public class UsuarioController {
 		usuario = rep.verificarLogin(usuario.getEmail(), usuario.getSenha());
 		if (usuario != null) {
 			session.setAttribute("usuarioLogado", usuario);
-			mv.setViewName("home");
+			mv.setViewName("redirect:/home");
 		} else {
 			mv.addObject("msg", "Email ou senha incorreto!");
 		}

@@ -39,7 +39,7 @@ public class Vacina implements Serializable {
 	
 	private boolean dose3Confirm;
 	@ManyToOne
-	Usuario usuario;
+	private Usuario usuario;
 	@Column
 	private boolean reforco;
 

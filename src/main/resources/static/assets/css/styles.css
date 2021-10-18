@@ -11519,8 +11519,15 @@ body {
   color: #adb5bd;
 }
 .sb-sidenav-light .sb-sidenav-menu .nav-link:hover {
-  color: #0d6efd;
+  color: #29c2e1;
+  margin-left: 0.9vh;
+  transform: scale(1.10);
+  
 }
+.sb-sidenav-light .sb-sidenav-menu .nav-link :hover {
+  margin-left: 200px;
+}
+
 .sb-sidenav-light .sb-sidenav-menu .nav-link.active {
   color: #0d6efd;
 }
@@ -11839,4 +11846,8 @@ body {
 	height: 100%;
 	width: 100%;
 	border-radius: 50%;
+}
+
+.alertsMinHeight{
+	min-height: 400px;
 }

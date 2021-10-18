@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Diário de Saude</title>
+    <link rel="icon" href="/assets/img/logo.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/assets/css/styles.css}"/>
@@ -35,6 +36,8 @@
                                     </p>
                                     <p class="font-weight-bolder mb-1 fs-5">Altura: <span class="fs-5"
                                             th:text="${session.usuarioValidado.perfil.altura}">altura</span></p>
+                                    <p class="font-weight-bolder mb-1 fs-5">Peso: <span class="fs-5"
+                                            th:text="${session.usuarioValidado.perfil.peso}">altura</span> kg</p>
                                     <p class="font-weight-bolder mb-1 fs-5">Sexo: <span class="fs-5"
                                             th:text="${session.usuarioValidado.perfil.sexo}">sexo</span></p>
                                     <p class="font-weight-bolder mb-1 fs-5">Tipo Sanguineo: <span class="fs-5 text-danger"

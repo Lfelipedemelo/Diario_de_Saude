@@ -46,7 +46,7 @@ public class ExameService {
 		try {
 			Date date = new Date();
 			System.out.println(mpFile.getOriginalFilename());
-			String fileName = String.valueOf(date.getTime()) + "." + mpFile.getOriginalFilename().substring(mpFile.getOriginalFilename().length() - 3, mpFile.getOriginalFilename().length());
+			String fileName = String.valueOf(date.getTime()) + "." + mpFile.getOriginalFilename().split("\\.")[1];
 			exame.setUsuario((Usuario) session.getAttribute("usuarioLogado"));
 			exame.setArquivo(fileName);
 			Exame exameSalvo = repository.save(exame);

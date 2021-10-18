@@ -25,16 +25,52 @@
 						<input th:checked="${vacina.dose2Confirm}" class="form-check-input" type="checkbox"
 							id="dose2ConfirmEdit" name="dose2Confirm" />
 						<label for="dose2ConfirmEdit" class="form-label">Segunda dose</label>
-						<input th:value="${#dates.format(vacina.dose2, 'yyyy-MM-dd')}" type="date" th:max=${maxDate}
+						<input th:value="${#dates.format(vacina.dose2, 'yyyy-MM-dd')}" type="date" 
 							class="form-control" id="inputSegundaDose" name="dose2">
 					</div>
 					<div class="col-md-4">
 						<input th:checked="${vacina.dose3Confirm}" class="form-check-input" type="checkbox"
 							id="dose3ConfirmEdit" name="dose3Confirm" />
 						<label for="dose3ConfirmEdit" class="form-label">Terceira Dose</label>
-						<input th:value="${#dates.format(vacina.dose3, 'yyyy-MM-dd')}" type="date" th:max=${maxDate}
+						<input th:value="${#dates.format(vacina.dose3, 'yyyy-MM-dd')}" type="date" 
 							class="form-control" id="inputTerceiraDose" name="dose3">
 					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary">Salvar</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div th:fragment="editConsulta" th:id="modalEditarConsulta+${consulta.id}" class="modal fade" data-bs-backdrop="static"
+	data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalEditarConsulta" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="staticBackdropLabel">Editar Consulta</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form class="row g-3" action="/consultas/update" method="POST">
+					<input th:value="${consulta.id}" type="hidden" id="inputIdConsulta" name="id">
+					<div class="col-12">
+									<label for="inputEspecialidade" class="form-label">Especialidade</label>
+									<input th:value="${consulta.especialidade}" type="text" class="form-control" id="inputEspecialidade" placeholder="Especialidade"
+										name="especialidade" required>
+								</div>
+								<div class="col-md-7">
+									<label for="inputMedico" class="form-label">Medico</label>
+									<input th:value="${consulta.medico}" type="text" class="form-control" id="inputMedico" placeholder="Medico"
+										name="medico" required>
+								</div>
+								<div class="col-md-5">
+									<label for="inputDataConsulta" class="form-label">Data Consulta</label>
+									<input th:value="${#dates.format(consulta.dataConsulta, 'yyyy-MM-dd')}" type="date" class="form-control" id="inputDataConsulta"
+										name="dataConsulta">
+								</div>
 					<div class="modal-footer">
 						<button type="submit" class="btn btn-primary">Salvar</button>
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
