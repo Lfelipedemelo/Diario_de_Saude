@@ -18,7 +18,7 @@ import br.com.diario_de_saude.vo.Usuario;
 @Controller
 @RequestMapping("/consultas")
 public class ConsultaController {
-
+	
 	@Autowired
 	private ConsultaService service;
 

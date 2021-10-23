@@ -17,16 +17,21 @@
         <div th:replace="fragments/sidebar :: side-bar"></div>
         <div id="layoutSidenav_content">
             <main>
-		        <div class="row justify-content-evenly mt-5">
-		            <div class="col-md-3 col-sm-6 bottom-margin text-center counter-section wow fadeInUp sm-margin-bottom-ten animated border border-warning border-5 rounded-pill alertsMinHeight pt-5" style="visibility: visible;"> <i class="fa fa-user-md medium-icon"></i> <span class="counter-number"></span> <span class="counter alt-font">2800</span>
-		            	<p class="counter-title">Próximas Consultas</p>
+            	<h1 class="text-center my-5 pb-3 border-bottom">Alertas</h1>
+		        <div class="row justify-content-evenly mt-5 alertsMinHeight">
+		            <div class="col-md-3 col-sm-6 bottom-margin text-center counter-section wow fadeInUp sm-margin-bottom-ten animated border border-warning border-5 rounded-pill pt-5" style="visibility: visible;"> <i class="fa fa-user-md medium-icon"></i> <span class="counter-number"></span> <span class="counter alt-font" th:text="${alertaConsultas.size}">2800</span>
+		            	<p class="counter-title border-bottom border-warning mb-2 pb-2">Próximas Consultas</p>
 		                <div th:each="consulta : ${alertaConsultas}">
-		                	<a th:text="${consulta.medico}"></a>
+		                	<h6 class="fw-bold" th:text="${consulta.especialidade} + ' - ' + ${consulta.medico}"></h6>
 		                </div>
 		            </div>			       
-					<div class="col-md-3 col-sm-6 bottom-margin text-center counter-section wow fadeInUp sm-margin-bottom-ten animated border border-info border-5 rounded-pill pt-5" style="visibility: visible;"> <i class="fa fa-syringe medium-icon"></i> <span class="counter-number"></span> <span class="counter alt-font">2800</span>
+					<div class="col-md-3 col-sm-6 bottom-margin text-center counter-section wow fadeInUp sm-margin-bottom-ten animated border border-info border-5 rounded-pill pt-5" style="visibility: visible;"> <i class="fa fa-syringe medium-icon"></i> <span class="counter-number"></span> <span class="counter alt-font" th:text="${alertaVacinas.size}">2800</span>
 					<div class="overflow-auto">
-		                <p class="counter-title">Próximas Vacinas</p>
+		                <p class="counter-title border-bottom border-info mb-2 pb-2">Próximas Vacinas</p>
+		                	<div th:each="vacina : ${alertaVacinas}">
+		                		<h6 class="fw-bold" th:text="${vacina.nome}">
+		                		</h6>
+		                	</div>
 		                </div>
 		            </div>
 			    </div>
