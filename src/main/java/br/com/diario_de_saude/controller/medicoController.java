@@ -38,7 +38,7 @@ public class medicoController {
 		ModelAndView mv = new ModelAndView("login");
 		Token validToken = service.authentication(codigo);
 		if(validToken == null) {
-			mv.addObject("msgAreaMedica", "Código de acesso invalido!");
+			mv.addObject("msgAreaMedica", "Código de acesso invalido ou expirado!");
 		} else {
 			session.setAttribute("usuarioValidado", validToken.getUsuario());
 			mv.addObject("exames", service.getExames(validToken.getUsuario().getId()));

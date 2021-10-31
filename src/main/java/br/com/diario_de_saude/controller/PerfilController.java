@@ -40,7 +40,35 @@ public class PerfilController {
 	
 	@PostMapping
 	public ModelAndView salvar(Perfil perfil, HttpSession session, @RequestParam("imagem") MultipartFile mpFile) throws Exception{
-		return service.salvarPerfil(perfil, session, mpFile);
+		ModelAndView mv = new ModelAndView("redirect:/perfil");
+		try {
+			service.salvarPerfil(perfil, session, mpFile);
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return mv;
+	}
+	
+	@PostMapping("/trocarSenha")
+	public ModelAndView trocarSenha(@RequestParam("senha") String senhaAtual,@RequestParam("novaSenha") String novaSenha,@RequestParam("novaSenha2") String novaSenha2 ,HttpSession session) {
+		ModelAndView mv = new ModelAndView("perfil");
+		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+		if(senhaAtual.equals(usuarioLogado.getSenha())
+				&& novaSenha != senhaAtual
+				&& novaSenha.equals(novaSenha2)) {
+			try {
+				service.trocarSenha(novaSenha, usuarioLogado);
+				mv.addObject("msgSucesso","sucesso");
+			} catch (Exception e) {
+				e.getMessage();
+			}
+		} else if(!senhaAtual.equals(usuarioLogado.getSenha())) {
+			mv.addObject("msgErro", "A senha atual esta incorreta!");
+		} else if(senhaAtual.equals(usuarioLogado.getSenha())
+				&& !novaSenha.equals(novaSenha2)) {
+			mv.addObject("msgErro", "A senha repetida deve ser igual a senha nova!");
+		}
+		return mv;
 	}
 
 	@ResponseBody

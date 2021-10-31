@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.diario_de_saude.repository.PerfilRepository;
+import br.com.diario_de_saude.repository.UsuarioRepository;
 import br.com.diario_de_saude.utils.FileUploadUtil;
 import br.com.diario_de_saude.vo.Perfil;
 import br.com.diario_de_saude.vo.Usuario;
@@ -22,8 +23,10 @@ public class PerfilService {
 	@Autowired
 	private PerfilRepository rep;
 	
-	public ModelAndView salvarPerfil(Perfil perfil, HttpSession session, @RequestParam("imagem") MultipartFile mpFile) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/perfil");
+	@Autowired
+	private UsuarioRepository uRep;
+	
+	public void salvarPerfil(Perfil perfil, HttpSession session, @RequestParam("imagem") MultipartFile mpFile) throws Exception {
 		Date date = new Date();
 		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
 		perfil.setId(usuario.getPerfil().getId());
@@ -40,7 +43,11 @@ public class PerfilService {
 		rep.save(perfil);
 		usuario.setPerfil(perfil);
 		session.setAttribute("usuarioLogado", usuario);
-		return mv;
+	}
+
+	public void trocarSenha(String novaSenha, Usuario usuario) {
+		usuario.setSenha(novaSenha);
+		uRep.save(usuario);
 	}
 
 }

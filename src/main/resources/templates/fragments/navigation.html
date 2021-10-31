@@ -13,14 +13,14 @@
     <!-- Navbar-->
     <div class="navbar-nav ms-auto ms-md-0 me-3">
 	    <a class="nav-item nav-link me-3 position-relative" id="alerts" th:href="@{/home}">
-	    <i class="fas fa-bell fa-lg"></i>
+	    Alertas <i class="fas fa-bell fa-lg"></i>
 	    <span class="position-absolute top-1 start-100 translate-middle badge rounded-pill badge-notification bg-danger"
 	    th:if="${session.nAlertas}" th:text="${session.nAlertas}">
 	    99+
 	    </span>
 	    </a>
 	    <a class="nav-link" id="navbarDropdown" th:href="@{/logout}">
-	       <i class="fas fa-sign-out-alt fa-fw fa-lg"></i>
+	      Sair<i class="fas fa-sign-out-alt fa-fw fa-lg"></i>
 	    </a>
     </div>
 </nav>

@@ -1,0 +1,17 @@
+<!-- MODAL DESCRIÇÃO MEDICAMENTO -->
+<div th:fragment="descricaoMedicamento" class="modal fade" th:id="modalDescricaoMedicamento+${medicamento.id}" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tituloDescricaoMedicamento" th:text="'Medicamento: ' + ${medicamento.nome}"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+	          <label for="floatingTextarea2" class="form-label">Observa&ccedil&otildees</label>
+			  <textarea class="form-control" placeholder="Observa&ccedil&otildees" id="observacoesTextArea" style="height: 100px; max-height: 300px;"
+			  name="observacoes" maxlength="256" th:text="${medicamento.observacoes}" disabled></textarea>
+            </div>
+        </div>
+    </div>
+</div>

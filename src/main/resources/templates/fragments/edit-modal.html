@@ -1,3 +1,4 @@
+<!-- MODAL EDITAR VACINA -->
 <div th:fragment="editVacina" th:id="modalEditarVacina+${vacina.id}" class="modal fade" data-bs-backdrop="static"
 	data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalEditarVacina" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
@@ -44,7 +45,7 @@
 		</div>
 	</div>
 </div>
-
+<!-- MODAL EDITAR CONSULTA -->
 <div th:fragment="editConsulta" th:id="modalEditarConsulta+${consulta.id}" class="modal fade" data-bs-backdrop="static"
 	data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalEditarConsulta" aria-hidden="true">
 	<div class="modal-dialog">
@@ -79,4 +80,47 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+<!-- MODAL EDITAR MEDICAMENTO -->
+<div th:fragment="editMedicamento" th:id="modalEditarMedicamento+${medicamento.id}" class="modal fade" data-bs-backdrop="static"
+	data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalEditarMedicamento" aria-hidden="true">
+	<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="staticBackdropLabel">Adicionar Medicamento</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<form class="row g-3 needs-validation" action="/medicamentos/update" method="POST">
+							<input th:value="${medicamento.id}" type="hidden" id="inputIdMedicamento" name="id">
+								<div class="col-12">
+									<label for="inputNomeMedicamento" class="form-label">Nome do medicamento</label>
+									<input type="text" class="form-control" id="inputNomeMedicamento" placeholder=""
+										name="nome" th:value="${medicamento.nome}" required>
+								</div>
+								<div class="col-md-6">
+									<label for="inputDataInicio" class="form-label">Data de Inicio</label>
+									<input type="date" class="form-control" id="inputDataInicio"
+										name="dataInicio" th:value="${#dates.format(medicamento.dataInicio, 'yyyy-MM-dd')}" required>
+								</div>
+								<div class="col-md-6">
+									<label for="inputDataFinal" class="form-label">Data final</label>
+									<input type="date" th:value="${#dates.format(medicamento.dataTermino, 'yyyy-MM-dd')}" class="form-control" id="inputDataFinal"
+										name="dataTermino">
+								</div>
+								<div class="col-md-12">
+								  <label for="floatingTextarea2" class="form-label">Observa&ccedil&otildees</label>
+								  <textarea class="form-control" placeholder="Observa&ccedil&otildees" id="floatingTextarea2" style="height: 100px"
+								  name="observacoes" maxlength="256" th:text="${medicamento.observacoes}" required></textarea>
+								</div>
+								<div class="modal-footer">
+									<button type="submit" class="btn btn-primary">Salvar</button>
+									<button type="button" class="btn btn-secondary"
+										data-bs-dismiss="modal">Cancelar</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
 </div>

@@ -11520,9 +11520,7 @@ body {
 }
 .sb-sidenav-light .sb-sidenav-menu .nav-link:hover {
   color: #29c2e1;
-  margin-left: 0.9vh;
-  transform: scale(1.10);
-  
+  margin-left: 1vh;
 }
 .sb-sidenav-light .sb-sidenav-menu .nav-link :hover {
   margin-left: 200px;

@@ -52,10 +52,9 @@
                   <input name="senha" type="password" class="form-control" id="floatingPassword" placeholder="Senha">
                   <label for="floatingPassword">Senha</label>
                 </div>
-                <div class="checkbox mb-3">
-                  <label>
-                    <input type="checkbox" value="remember-me"> Lembrar-me
-                  </label>
+                <div class="checkbox mb-3 text-end">
+                     <small class="text-muted textRegister"><a href="#registrar" class="ms-1 fw-bold" data-bs-toggle="modal"
+								data-bs-target="#modalRecuperarSenha">Esqueci minha senha!</a></small>
                 </div>
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
                 <hr class="my-4">
@@ -64,6 +63,41 @@
             </div>
           </div>
         </div>
+        
+        <!-- Modal Recuperar Senha -->
+			<div class="modal fade" id="modalRecuperarSenha" data-bs-backdrop="static" data-bs-keyboard="false"
+				tabindex="-1" aria-labelledby="modalRecuperarSenha" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="staticBackdropLabel">Recuperar Senha</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<form class="row g-3 needs-validation" action="/exames" method="POST"
+								enctype="multipart/form-data">
+								<div class="col-12">
+									<label for="inputEmailRecSenha" class="form-label">Email</label>
+									<input type="text" class="form-control" id="inputEmailRecSenha" placeholder=""
+										name="nome" required minlength="4">
+								</div>
+								<div class="col-12">
+									<div class="alert alert-primary" role="alert">
+									  <small>Será enviado a você uma nova senha para o <strong>email cadastrado.</strong></small>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="submit" class="btn btn-primary">Enviar</button>
+									<button type="button" class="btn btn-secondary"
+										data-bs-dismiss="modal">Cancelar</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- FimModal Recuperar Senha -->
+        
         
         <div class="b-example-divider" id="areaMedica"></div>
         <div class="px-4 py-5 my-2 text-center">
