@@ -19,7 +19,7 @@
 				<div
 					class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 					<h1 class="h2">Medicamentos</h1>
-					
+
 					<div class="btn-toolbar mb-2 mb-md-0">
 						<div class="btn-group me-2">
 							<button type="button" class="btn btn-success" data-bs-toggle="modal"
@@ -46,18 +46,17 @@
 								</div>
 								<div class="col-md-6">
 									<label for="inputDataInicio" class="form-label">Data de Inicio</label>
-									<input type="date" class="form-control" id="inputDataInicio"
-										name="dataInicio" required>
+									<input type="date" class="form-control" id="inputDataInicio" name="dataInicio"
+										required>
 								</div>
 								<div class="col-md-6">
 									<label for="inputDataFinal" class="form-label">Data final</label>
-									<input type="date" class="form-control" id="inputDataFinal"
-										name="dataTermino">
+									<input type="date" class="form-control" id="inputDataFinal" name="dataTermino">
 								</div>
 								<div class="col-md-12">
-								  <label for="floatingTextarea2" class="form-label">Observações</label>
-								  <textarea class="form-control" placeholder="Observações" id="floatingTextarea2" style="height: 100px"
-								  name="observacoes" maxlength="256" required></textarea>
+									<label for="floatingTextarea2" class="form-label">Observações</label>
+									<textarea class="form-control" placeholder="Observações" id="floatingTextarea2"
+										style="height: 100px" name="observacoes" maxlength="256" required></textarea>
 								</div>
 								<div class="modal-footer">
 									<button type="submit" class="btn btn-primary">Adicionar</button>
@@ -74,7 +73,7 @@
 			<div class="card mb-3">
 				<div class="card-header">
 					<i class="fas fa-table me-1"></i>
-					 Medicamentos Cadastrados
+					Medicamentos Cadastrados
 				</div>
 				<div class="card-body">
 					<table id="datatablesSimple">
@@ -114,7 +113,7 @@
 											th:attr="data-bs-target='#modalEditarMedicamento'+${medicamento.id}">Editar</a>
 										<a class="btn btn-outline-danger" data-bs-toggle="modal"
 											th:attr="data-bs-target='#modalExcluirMedicamento'+${medicamento.id}">Deletar</a>
-											<div th:replace="~{fragments/delete-modal :: deleteMedicamento}"></div>
+										<div th:replace="~{fragments/delete-modal :: deleteMedicamento}"></div>
 										<div th:replace="~{fragments/edit-modal :: editMedicamento}"></div>
 										<div th:replace="~{fragments/descricao-modal :: descricaoMedicamento}"></div>
 									</div>

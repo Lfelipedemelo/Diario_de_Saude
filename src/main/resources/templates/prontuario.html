@@ -9,7 +9,7 @@
     <link rel="icon" href="/assets/img/logo.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <link rel="stylesheet" th:href="@{/assets/css/styles.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/styles.css}" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
         crossorigin="anonymous"></script>
 
@@ -22,9 +22,11 @@
                 <div class="col-md-3 mb-3">
                     <div class="card">
                         <div class="card-body">
-                            <div class="d-flex justify-content-center">                                    
-                                <img th:if="not ${session.usuarioValidado.perfil.arquivo}" class="perfilImage imagePerfil" src="/assets/img/empty-user.png">
-								<img th:if="${session.usuarioValidado.perfil.arquivo}" class="perfilImage imagePerfil" th:src="@{${session.usuarioValidado.perfil.getCaminhoImagem}}">
+                            <div class="d-flex justify-content-center">
+                                <img th:if="not ${session.usuarioValidado.perfil.arquivo}"
+                                    class="perfilImage imagePerfil" src="/assets/img/empty-user.png">
+                                <img th:if="${session.usuarioValidado.perfil.arquivo}" class="perfilImage imagePerfil"
+                                    th:src="@{${session.usuarioValidado.perfil.getCaminhoImagem}}">
                             </div>
                             <div class="d-flex flex-column">
                                 <div class="mt-2 align-items-start">
@@ -40,7 +42,8 @@
                                             th:text="${session.usuarioValidado.perfil.peso}">altura</span> kg</p>
                                     <p class="font-weight-bolder mb-1 fs-5">Sexo: <span class="fs-5"
                                             th:text="${session.usuarioValidado.perfil.sexo}">sexo</span></p>
-                                    <p class="font-weight-bolder mb-1 fs-5">Tipo Sanguineo: <span class="fs-5 text-danger"
+                                    <p class="font-weight-bolder mb-1 fs-5">Tipo Sanguineo: <span
+                                            class="fs-5 text-danger"
                                             th:text="${session.usuarioValidado.perfil.tipoSanguineo}">tipoSanguineo</span>
                                     </p>
                                 </div>
@@ -48,13 +51,14 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-center mt-4">
-                    <a class="btn btn-lg btn-secondary" th:href="@{/#areaMedica}">Voltar</a>
+                        <a class="btn btn-lg btn-secondary" th:href="@{/#areaMedica}">Voltar</a>
                     </div>
                 </div>
                 <div class="col-md-9">
                     <div class="card mb-3 containerExamesMedicos overflow-auto min-height500">
                         <div class="card-body">
-                          <h2 class="textExameEmpty p-4 my-auto mx-auto text-muted" th:if="${exames.size} == 0">Este usuário não possuí exames cadastrados!</h2>
+                            <h2 class="textExameEmpty p-4 my-auto mx-auto text-muted" th:if="${exames.size} == 0">Este
+                                usuário não possuí exames cadastrados!</h2>
                             <div class="pb-2">
                                 <div class="row row-cols-3">
                                     <div class="gy-3" th:each="exame : ${exames}">
@@ -67,13 +71,13 @@
                                                 </a>
                                                 <div class="card-body">
                                                     <div class="d-flex justify-content-between" id="cardContent">
-                                                    <h5 class="card-title text-break" th:text="${exame.nome}"></h5>
-                                                    <div>
-                                                        <a class="btn btn-info" data-bs-toggle="modal"
-                                                            th:attr="data-bs-target='#modalDescricao'+${exame.id}">
-                                                            <i class="fas fa-info-circle iconWhite"></i>
-                                                        </a>
-                                                    </div>
+                                                        <h5 class="card-title text-break" th:text="${exame.nome}"></h5>
+                                                        <div>
+                                                            <a class="btn btn-info" data-bs-toggle="modal"
+                                                                th:attr="data-bs-target='#modalDescricao'+${exame.id}">
+                                                                <i class="fas fa-info-circle iconWhite"></i>
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <!--CHAMANDO OS FRAGMENTS -->
@@ -99,38 +103,42 @@
                                 <div class="card-body">
                                     <div class="overflow-auto" style="height: 200px;">
                                         <div>
-                                        <table class="table table-borderless">
-										  <thead>
-										    <tr>
-										      <th scope="col">Vacina</th>
-										      <th scope="col">1ª Dose</th>
-										      <th scope="col">2ª Dose</th>
-										      <th scope="col">3ª Dose</th>
-										    </tr>
-										  </thead>
-										  <tbody th:each="vacina : ${vacinas}">
-										    <tr>
-										      <td th:text="${vacina.nome}"></td>
-										      <td class="text-center">
-											    <i th:if="${vacina.dose1Confirm}" class="fas fa-check iconGreen"></i>
-												<i th:if="${not vacina.dose1Confirm}"
-												class="fas fa-times iconRed"></i>
-										      </td>
-										      <td class="text-center">
-											    <i th:if="${vacina.dose2Confirm}" class="mx-auto fas fa-check iconGreen"></i>
-												<i th:if="${not vacina.dose2Confirm}"
-												class="fas fa-times iconRed"></i>
-										      </td>
-										      <td class="text-center">
-											    <i id="dose3confirm" th:if="${vacina.dose3Confirm}"
-												class="fas fa-check iconGreen"></i>
-												<i th:if="${not vacina.dose3Confirm}"
-												class="fas fa-times iconRed"></i>
-										      </td>
-										    </tr>
-										  </tbody>
-										</table>
-										<h5 class="textExameEmpty p-4 my-auto mx-auto text-muted text-center" th:if="${vacinas.size} == 0">Este usuário não possuí vacinas cadastradas!</h5>
+                                            <table class="table table-borderless">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Vacina</th>
+                                                        <th scope="col">1ª Dose</th>
+                                                        <th scope="col">2ª Dose</th>
+                                                        <th scope="col">3ª Dose</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody th:each="vacina : ${vacinas}">
+                                                    <tr>
+                                                        <td th:text="${vacina.nome}"></td>
+                                                        <td class="text-center">
+                                                            <i th:if="${vacina.dose1Confirm}"
+                                                                class="fas fa-check iconGreen"></i>
+                                                            <i th:if="${not vacina.dose1Confirm}"
+                                                                class="fas fa-times iconRed"></i>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <i th:if="${vacina.dose2Confirm}"
+                                                                class="mx-auto fas fa-check iconGreen"></i>
+                                                            <i th:if="${not vacina.dose2Confirm}"
+                                                                class="fas fa-times iconRed"></i>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <i id="dose3confirm" th:if="${vacina.dose3Confirm}"
+                                                                class="fas fa-check iconGreen"></i>
+                                                            <i th:if="${not vacina.dose3Confirm}"
+                                                                class="fas fa-times iconRed"></i>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <h5 class="textExameEmpty p-4 my-auto mx-auto text-muted text-center"
+                                                th:if="${vacinas.size} == 0">Este usuário não possuí vacinas
+                                                cadastradas!</h5>
                                         </div>
                                     </div>
                                 </div>
