@@ -146,28 +146,31 @@
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="card h-100">
-                                <div class="card-body">
-                                    <h6 class="d-flex align-items-center mb-3">Alergias</h6>
-                                    <small>Alergia01</small>
+                                <div class="card-body overflow-auto ps-5" style="height: 200px;">
+                                <div class="row">
+                                <div class="col-5 border-end border-info ps-4">
+                                    <h5 class="d-flex align-items-center mb-3">Alergias</h5>
+                                    <div th:each="alergia : ${alergias}">
+                                    <small th:text="${alergia.nome}">AlergiaNome</small>
                                     <div class="mb-2" style="height: 5px">
                                     </div>
-                                    <small>Alergia02</small>
+                                    </div>
+                                </div>    
+                                 <div class="col-6 ms-4 ps-5">
+                                    <h5 class="d-flex align-items-center mb-3">Doenças</h5>
+                                    <div th:each="doenca : ${doencas}">
+                                    <small th:text="${doenca.nome}">DoencaNome</small>
                                     <div class="mb-2" style="height: 5px">
                                     </div>
-                                    <small>Alergia03</small>
-                                    <div class="mb-2" style="height: 5px">
                                     </div>
-                                    <small>Alergia04</small>
-                                    <div class="mb-2" style="height: 5px">
-                                    </div>
-
+                                </div>
+                                </div>                             
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 

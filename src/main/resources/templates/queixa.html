@@ -21,42 +21,61 @@
 					class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 					<h1 class="h2">Queixas</h1>
 					<div class="btn-toolbar mb-2 mb-md-0">
-						<div class="btn-group me-2">
-							<button type="button" class="btn btn-success" data-bs-toggle="modal"
-								data-bs-target="#modalAdicionarVacina">Adicionar</button>
-						</div>
 					</div>
 				</div>
-
-				<div class="card text-dark bg-light mb-3">
+				<div class="card text-dark bg-light">
 					<div class="card-body">
 						<h5 class="card-title">Alergias:</h5>
 						<div class="col-md-4 ">
+							<form class="row g-3 needs-validation" action="/queixas/alergia" method="POST">
 							<div class="input-group mb-3">
 								<input type="text" class="form-control" placeholder="Alergia" aria-label="Alergia"
-									aria-describedby="basic-addon2">
+									aria-describedby="basic-addon2" name="nome" maxlength="50">
 								<div class="input-group-append">
-									<button class="btn btn-outline-secondary" type="button">Adicionar</button>
+									<button class="btn btn-outline-secondary" type="submit">Adicionar</button>
 								</div>
 							</div>
 							<div class="col-md-12" th:each="alergia : ${session.usuarioLogado?.perfil.alergias}">
 								<h2 th:text="#{alergia}"></h2>
 							</div>
+							</form>
+						</div>
+						<div class="input-group">
+						<ul class="list-unstyled" th:each="alergia : ${alergias}">
+						<li><h4><span class="badge rounded-pill bg-primary ms-2">
+						<span th:text="${alergia.nome}">nomeAlergia</span>
+						    <a class="ms-2 pt-3" th:href="@{/queixas/delete{id}(id=${alergia.id})}">
+						    <i class="fas fa-times text-white" style="color:inherit"></i>
+						    </a>
+						</span></h4></li>
+						</ul>
 						</div>
 					</div>
 					<div class="card-body">
 						<h5 class="card-title">Doenças Crônicas:</h5>
 						<div class="col-md-4 ">
+						<form class="row g-3 needs-validation" action="/queixas/doenca" method="POST">
 							<div class="input-group mb-3">
 								<input type="text" class="form-control" placeholder="Doenças Crônicas"
-									aria-label="Doenças" aria-describedby="basic-addon2">
+									aria-label="Doenças" aria-describedby="basic-addon2" name="nome" maxlength="50">
 								<div class="input-group-append">
-									<button class="btn btn-outline-secondary" type="button">Adicionar</button>
+									<button class="btn btn-outline-secondary" type="submit">Adicionar</button>
 								</div>
 							</div>
 							<div class="col-md-12" th:each="alergia : ${session.usuarioLogado?.perfil.alergias}">
 								<h2 th:text="#{alergia}"></h2>
 							</div>
+						</form>
+						</div>
+						<div class="input-group">
+						<ul class="list-unstyled" th:each="doenca : ${doencas}">
+						<li><h4><span class="badge rounded-pill bg-primary ms-2">
+						<span th:text="${doenca.nome}">nomeDoenca</span>
+						    <a class="ms-2 pt-3" th:href="@{/queixas/delete{id}(id=${doenca.id})}">
+						    <i class="fas fa-times text-white" style="color:inherit"></i>
+						    </a>
+						</span></h4></li>
+						</ul>
 						</div>
 					</div>
 				</div>

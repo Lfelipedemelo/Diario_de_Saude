@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,22 +26,19 @@ public class medicoController {
 	@Autowired
 	ExameService exameService;
 	
-	@GetMapping
-	public ModelAndView index(HttpSession session) {
-		ModelAndView mv = new ModelAndView("acessoToken");
-		return mv;	
-	}
-	
-	@PostMapping("/prontuario")
+	@GetMapping()
 	public ModelAndView authentication(@RequestParam("codigo") String codigo, HttpSession session) throws IOException {
 		ModelAndView mv = new ModelAndView("login");
 		Token validToken = service.authentication(codigo);
 		if(validToken == null) {
 			mv.addObject("msgAreaMedica", "Código de acesso invalido ou expirado!");
 		} else {
+			Long uId = validToken.getUsuario().getId();
 			session.setAttribute("usuarioValidado", validToken.getUsuario());
-			mv.addObject("exames", service.getExames(validToken.getUsuario().getId()));
-			mv.addObject("vacinas", service.getVacinas(validToken.getUsuario().getId(), ""));
+			mv.addObject("exames", service.getExames(uId));
+			mv.addObject("vacinas", service.getVacinas(uId, ""));
+			mv.addObject("alergias", service.getAlergias(uId));
+			mv.addObject("doencas", service.getDoencas(uId));
 			mv.setViewName("prontuario");
 		}
 		return mv;

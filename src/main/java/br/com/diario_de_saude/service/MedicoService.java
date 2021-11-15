@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.diario_de_saude.repository.ExameRepository;
+import br.com.diario_de_saude.repository.QueixaRepository;
 import br.com.diario_de_saude.repository.TokenRepository;
 import br.com.diario_de_saude.repository.VacinaRepository;
 import br.com.diario_de_saude.vo.Exame;
+import br.com.diario_de_saude.vo.Queixa;
 import br.com.diario_de_saude.vo.Token;
 import br.com.diario_de_saude.vo.Vacina;
 
@@ -22,6 +24,8 @@ public class MedicoService {
 	ExameRepository exameRepository;
 	@Autowired
 	VacinaRepository vacinaRepository;
+	@Autowired
+	QueixaRepository queixaRepository;
 	
 	public Token authentication(String codigo) {
 		Token validToken = tkRepo.findByToken(codigo);
@@ -58,4 +62,13 @@ public class MedicoService {
 		return exames;
 	}
 
+	public Object getAlergias(long id) {
+		List<Queixa> alergias = queixaRepository.findAllByUsuarioId(id, "ALERGIA");
+		return alergias;
+	}
+	
+	public Object getDoencas(long id) {
+		List<Queixa> doencas = queixaRepository.findAllByUsuarioId(id, "DOENCA");
+		return doencas;
+	}
 }
