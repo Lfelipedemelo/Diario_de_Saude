@@ -22,6 +22,8 @@ public class EmailController {
 		ModelAndView mv = new ModelAndView("login");
 		if(service.recuperarSenha(email)) {
 			mv.addObject("msgSuccess", "Email enviado com sucesso");			
+		} else {
+			mv.addObject("msg", "Email não encontrado");
 		}
 		return mv;
 	}
