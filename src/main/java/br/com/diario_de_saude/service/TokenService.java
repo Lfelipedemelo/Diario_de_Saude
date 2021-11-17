@@ -1,7 +1,5 @@
 package br.com.diario_de_saude.service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
