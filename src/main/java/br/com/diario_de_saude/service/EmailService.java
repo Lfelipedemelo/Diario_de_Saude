@@ -2,6 +2,7 @@ package br.com.diario_de_saude.service;
 
 
 
+import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
 import org.apache.commons.mail.DefaultAuthenticator;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.diario_de_saude.repository.UsuarioRepository;
+import br.com.diario_de_saude.utils.Encrypt;
 import br.com.diario_de_saude.vo.Usuario;
 
 @Service
@@ -34,15 +36,15 @@ public class EmailService {
 		email.send();
 	}
 
-	public boolean recuperarSenha(String email) throws EmailException {
+	public boolean recuperarSenha(String email) throws EmailException, NoSuchAlgorithmException {
 		Usuario usuario = repo.findByEmail(email);
 		if(usuario == null) {
 			return false;
 		}
 		String uuid = UUID.randomUUID().toString().toUpperCase();
-		usuario.setSenha(uuid.substring(0, 8));
+		usuario.setSenha(Encrypt.password(uuid.substring(0, 8)));
+		sendEmail(email, uuid.substring(0, 8));
 		repo.save(usuario);
-		sendEmail(email, usuario.getSenha());
 		return true;
 	}
 }

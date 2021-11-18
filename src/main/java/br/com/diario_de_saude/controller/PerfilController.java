@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.diario_de_saude.repository.PerfilRepository;
 import br.com.diario_de_saude.service.PerfilService;
+import br.com.diario_de_saude.utils.Encrypt;
 import br.com.diario_de_saude.vo.Perfil;
 import br.com.diario_de_saude.vo.Usuario;
 
@@ -50,11 +52,11 @@ public class PerfilController {
 	}
 	
 	@PostMapping("/trocarSenha")
-	public ModelAndView trocarSenha(@RequestParam("senha") String senhaAtual,@RequestParam("novaSenha") String novaSenha,@RequestParam("novaSenha2") String novaSenha2 ,HttpSession session) {
+	public ModelAndView trocarSenha(@RequestParam("senha") String senhaAtual,@RequestParam("novaSenha") String novaSenha,@RequestParam("novaSenha2") String novaSenha2 ,HttpSession session) throws NoSuchAlgorithmException {
 		ModelAndView mv = new ModelAndView("perfil");
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
-		if(senhaAtual.equals(usuarioLogado.getSenha())
-				&& novaSenha != senhaAtual
+		if(Encrypt.password(senhaAtual).equals(usuarioLogado.getSenha())
+				&& !novaSenha.equals(senhaAtual)
 				&& novaSenha.equals(novaSenha2)) {
 			try {
 				service.trocarSenha(novaSenha, usuarioLogado);
@@ -62,11 +64,13 @@ public class PerfilController {
 			} catch (Exception e) {
 				e.getMessage();
 			}
-		} else if(!senhaAtual.equals(usuarioLogado.getSenha())) {
+		} else if(!Encrypt.password(senhaAtual).equals(usuarioLogado.getSenha())) {
 			mv.addObject("msgErro", "A senha atual esta incorreta!");
-		} else if(senhaAtual.equals(usuarioLogado.getSenha())
+		} else if(Encrypt.password(senhaAtual).equals(usuarioLogado.getSenha())
 				&& !novaSenha.equals(novaSenha2)) {
 			mv.addObject("msgErro", "A senha repetida deve ser igual a senha nova!");
+		} else if(novaSenha.equals(senhaAtual)) {
+			mv.addObject("msgErro", "A nova senha não pode ser igual a senha atual!");
 		}
 		return mv;
 	}

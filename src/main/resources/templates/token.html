@@ -37,7 +37,7 @@
                             <div class="ms-5 col-4">
                                 <div class="input-group input-group-lg">
                                 <span class="input-group-text pe-5" id="basic-addon1">Link</span>
-                                    <input class="form-control text-center" th:value="'localhost:8080/areaMedica?codigo=' + ${tokenGerado}" type="text"
+                                    <input class="form-control text-center" th:value="${linkGerado}" type="text"
                                         id="inputLink" readonly>
                                     <span class="input-group-text" id="copy"><button type="button" class="far fa-copy"
                                             onclick="copyLinkToClipboard()"></button></span>

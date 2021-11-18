@@ -1,6 +1,7 @@
 package br.com.diario_de_saude.service;
 
 import java.io.File;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.diario_de_saude.repository.PerfilRepository;
 import br.com.diario_de_saude.repository.UsuarioRepository;
+import br.com.diario_de_saude.utils.Encrypt;
 import br.com.diario_de_saude.utils.FileUploadUtil;
 import br.com.diario_de_saude.vo.Perfil;
 import br.com.diario_de_saude.vo.Usuario;
@@ -45,8 +47,8 @@ public class PerfilService {
 		session.setAttribute("usuarioLogado", usuario);
 	}
 
-	public void trocarSenha(String novaSenha, Usuario usuario) {
-		usuario.setSenha(novaSenha);
+	public void trocarSenha(String novaSenha, Usuario usuario) throws NoSuchAlgorithmException {
+		usuario.setSenha(Encrypt.password(novaSenha));
 		uRep.save(usuario);
 	}
 

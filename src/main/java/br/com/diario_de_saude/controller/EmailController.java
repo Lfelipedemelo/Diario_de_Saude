@@ -1,5 +1,7 @@
 package br.com.diario_de_saude.controller;
 
+import java.security.NoSuchAlgorithmException;
+
 import org.apache.commons.mail.EmailException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +20,7 @@ public class EmailController {
 	EmailService service;
 	
 	@PostMapping
-	public ModelAndView recuperarSenha(@RequestParam("emailRecuperar") String email) throws EmailException {
+	public ModelAndView recuperarSenha(@RequestParam("emailRecuperar") String email) throws EmailException, NoSuchAlgorithmException {
 		ModelAndView mv = new ModelAndView("login");
 		if(service.recuperarSenha(email)) {
 			mv.addObject("msgSuccess", "Email enviado com sucesso");			

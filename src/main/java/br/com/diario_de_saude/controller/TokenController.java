@@ -23,7 +23,13 @@ public class TokenController {
 	private ModelAndView listToken(HttpSession session) {
 		ModelAndView mv = new ModelAndView("token");
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
-		mv.addObject("tokenGerado", service.listToken(usuarioLogado).getCodigo());
+		String token = service.listToken(usuarioLogado).getCodigo();
+		mv.addObject("tokenGerado", token);
+		if(token.contains("-")) {
+			mv.addObject("linkGerado", "--------");			
+		} else {
+			mv.addObject("linkGerado", "localhost:8080/areaMedica?codigo=" + token);
+		}
 		return mv;
 	}
 	
@@ -31,7 +37,9 @@ public class TokenController {
 	private ModelAndView generateToken(HttpSession session) {
 		ModelAndView mv = new ModelAndView("token");
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
-		mv.addObject("tokenGerado", service.generateToken(usuarioLogado).getCodigo());
+		String tokenGerado = service.generateToken(usuarioLogado).getCodigo();
+		mv.addObject("tokenGerado", tokenGerado);
+		mv.addObject("linkGerado", "localhost:8080/areaMedica?codigo=" + tokenGerado);
 		return mv;
 	}
 }
