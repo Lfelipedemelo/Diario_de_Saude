@@ -33,7 +33,7 @@
                                     <h4 class="text-center mb-3"
                                         th:text="${session.usuarioValidado.perfil.nome + ' ' + session.usuarioValidado.perfil.sobrenome}">
                                         NomeCompleto</h4>
-                                    <p class="mb-1 font-weight-bolder fs-5">idade: <span class="font-weight-bold fs-5"
+                                    <p class="mb-1 font-weight-bolder fs-5">Idade: <span class="font-weight-bold fs-5"
                                             th:text="${session.usuarioValidado.perfil.getIdade()} + ' anos'"></span>
                                     </p>
                                     <p class="font-weight-bolder mb-1 fs-5">Altura: <span class="fs-5"
@@ -150,14 +150,16 @@
                                 <div class="row">
                                 <div class="col-5 border-end border-info ps-4">
                                     <h5 class="d-flex align-items-center mb-3">Alergias</h5>
+                                    <small th:if="${alergias.size} == 0">Não há alergias cadastradas</small>
                                     <div th:each="alergia : ${alergias}">
                                     <small th:text="${alergia.nome}">AlergiaNome</small>
                                     <div class="mb-2" style="height: 5px">
                                     </div>
                                     </div>
-                                </div>    
+                                </div>
                                  <div class="col-6 ms-4 ps-5">
                                     <h5 class="d-flex align-items-center mb-3">Doenças</h5>
+                                    <small th:if="${doencas.size} == 0">Não há doenças cadastradas</small>
                                     <div th:each="doenca : ${doencas}">
                                     <small th:text="${doenca.nome}">DoencaNome</small>
                                     <div class="mb-2" style="height: 5px">

@@ -3,6 +3,7 @@ package br.com.diario_de_saude.service;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -45,13 +46,34 @@ public class ExameService {
 		ModelAndView mv = new ModelAndView("redirect:/exames");
 		try {
 			Date date = new Date();
-			System.out.println(mpFile.getOriginalFilename());
 			String fileName = String.valueOf(date.getTime()) + "." + mpFile.getOriginalFilename().split("\\.")[1];
 			exame.setUsuario((Usuario) session.getAttribute("usuarioLogado"));
 			exame.setArquivo(fileName);
 			Exame exameSalvo = repository.save(exame);
 			String diretorio = "exame-img/" + exameSalvo.getUsuario().getId();
 			FileUploadUtil.saveFile(diretorio, fileName, mpFile);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mv;
+	}
+	
+	public ModelAndView editar(Exame exame, @RequestParam("imagemEditada") MultipartFile mpFile)
+			throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/exames");
+		Exame examePersistente = repository.findByExameId(exame.getId());
+		exame.setUsuario(examePersistente.getUsuario());
+		try {
+			if(mpFile.getName().equals("") || mpFile.getSize() == 0) {
+				exame.setArquivo(examePersistente.getArquivo());
+			} else {
+				Date date = new Date();
+				String fileName = String.valueOf(date.getTime()) + "." + mpFile.getOriginalFilename().split("\\.")[1];
+				exame.setArquivo(fileName);
+				String diretorio = "exame-img/" + examePersistente.getUsuario().getId();
+				FileUploadUtil.saveFile(diretorio, fileName, mpFile);				
+			}
+			repository.save(exame);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
