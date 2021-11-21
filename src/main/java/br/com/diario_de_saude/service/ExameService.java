@@ -1,6 +1,7 @@
 package br.com.diario_de_saude.service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -31,7 +32,7 @@ public class ExameService {
 		if (paginaAtual == null) {
 			paginaAtual = 0;
 		}
-		Pageable pageable = PageRequest.of(paginaAtual, 2);
+		Pageable pageable = PageRequest.of(paginaAtual, Constants.EXAMES_POR_PAGINA);
 		List<Exame> exames = repository.findByUsuarioId((long) idUsuario, pageable);
 		mv.addObject("nPaginas", getNumeroDePaginas(idUsuario));
 		mv.addObject("exames", exames);
@@ -42,12 +43,18 @@ public class ExameService {
 	public ModelAndView adicionar(Exame exame, HttpSession session, @RequestParam("imagem") MultipartFile mpFile)
 			throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/exames");
-		String fileName = StringUtils.cleanPath(mpFile.getOriginalFilename());
-		exame.setUsuario((Usuario) session.getAttribute("usuarioLogado"));
-		exame.setArquivo(fileName);
-		Exame exameSalvo = repository.save(exame);
-		String diretorio = "exame-img/" + exameSalvo.getUsuario().getId();
-		FileUploadUtil.saveFile(diretorio, fileName, mpFile);
+		try {
+			Date date = new Date();
+			System.out.println(mpFile.getOriginalFilename());
+			String fileName = String.valueOf(date.getTime()) + "." + mpFile.getOriginalFilename().split("\\.")[1];
+			exame.setUsuario((Usuario) session.getAttribute("usuarioLogado"));
+			exame.setArquivo(fileName);
+			Exame exameSalvo = repository.save(exame);
+			String diretorio = "exame-img/" + exameSalvo.getUsuario().getId();
+			FileUploadUtil.saveFile(diretorio, fileName, mpFile);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return mv;
 	}
 
@@ -63,5 +70,5 @@ public class ExameService {
 		}
 		return nPaginas;
 	}
-
+	
 }

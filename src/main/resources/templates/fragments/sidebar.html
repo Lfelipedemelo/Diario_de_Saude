@@ -1,29 +1,44 @@
 <div th:fragment="side-bar" id="layoutSidenav_nav">
     <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
-            <div class="nav">
-                <div class="sb-sidenav-menu-heading">Core</div>
-                <a class="nav-link" th:href="@{/dashboard}">
+            <div class="nav mt-3">
+                <a class="nav-link" th:href="@{/home}">
                     <div class="sb-nav-link-icon"><i class="fas fa-home" aria-hidden="true"></i></div>
                     Inicio
                 </a>
                 <a class="nav-link" th:href="@{/perfil}">
-                    	<div class="sb-nav-link-icon"><i class="fas fa-user" aria-hidden="true"></i></div>
-                    	Perfil
+                    <div class="sb-nav-link-icon"><i class="fas fa-user" aria-hidden="true"></i></div>
+                    Perfil
                 </a>
-               	<a class="nav-link" th:href="@{/vacinas}">
-                    	<div class="sb-nav-link-icon"><i class="fas fa-medkit" aria-hidden="true"></i></div>
-                    	Vacinas
+                <a class="nav-link" th:href="@{/vacinas}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-syringe" aria-hidden="true"></i></div>
+                    Vacinas
                 </a>
-				<a class="nav-link" th:href="@{/exames}">
-                    	<div class="sb-nav-link-icon"><i class="fas fa-stethoscope" aria-hidden="true"></i></div>
-                    	Exames
+                <a class="nav-link" th:href="@{/exames}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-file-medical" aria-hidden="true"></i></div>
+                    Exames
+                </a>
+                <a class="nav-link" th:href="@{/consultas}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-user-md" aria-hidden="true"></i></div>
+                    Consultas
+                </a>
+                <a class="nav-link" th:href="@{/medicamentos}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-capsules" aria-hidden="true"></i></div>
+                    Medicamentos
+                </a>
+                <a class="nav-link" th:href="@{/queixas}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-heartbeat" aria-hidden="true"></i></div>
+                    Doen&ccedilas & Alergias
+                </a>
+                <a class="nav-link" th:href="@{/token}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-share-alt" aria-hidden="true"></i></div>
+                    Compartilhar
                 </a>
             </div>
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Bem vindo:</div>
-            <a th:text="${session.usuarioLogado?.perfil?.nome}">NomeUsuario</a>
+            <a th:text="${session.usuarioLogado.perfil.nome}">NomeUsuario</a>
         </div>
     </nav>
 </div>

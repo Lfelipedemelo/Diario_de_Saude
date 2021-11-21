@@ -26,14 +26,20 @@ public class Vacina implements Serializable {
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dose1;
+	
+	private boolean dose1Confirm;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dose2;
+	
+	private boolean dose2Confirm;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dose3;
+	
+	private boolean dose3Confirm;
 	@ManyToOne
-	Usuario usuario;
+	private Usuario usuario;
 	@Column
 	private boolean reforco;
 
@@ -88,6 +94,8 @@ public class Vacina implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	
 
 	@Override
 	public int hashCode() {
@@ -117,6 +125,30 @@ public class Vacina implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public boolean isDose1Confirm() {
+		return dose1Confirm;
+	}
+
+	public void setDose1Confirm(boolean dose1Confirm) {
+		this.dose1Confirm = dose1Confirm;
+	}
+
+	public boolean isDose2Confirm() {
+		return dose2Confirm;
+	}
+
+	public void setDose2Confirm(boolean dose2Confirm) {
+		this.dose2Confirm = dose2Confirm;
+	}
+
+	public boolean isDose3Confirm() {
+		return dose3Confirm;
+	}
+
+	public void setDose3Confirm(boolean dose3Confirm) {
+		this.dose3Confirm = dose3Confirm;
 	}
 
 }

@@ -1,5 +1,6 @@
 package br.com.diario_de_saude.vo;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import br.com.diario_de_saude.utils.Constants;
 
 @Entity
 public class Perfil {
@@ -29,6 +32,12 @@ public class Perfil {
 	private String altura;
 	
 	private String tipoSanguineo;
+	
+	private ArrayList<String> alergias;
+	
+	private String arquivo;
+	
+	private int peso;
 		
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -98,6 +107,27 @@ public class Perfil {
 	public void setDtaNascimento(Date dtaNascimento){
 		this.dtaNascimento = dtaNascimento;
 	}
+	
+	public int getIdade() {
+		if(this.getDtaNascimento() == null) {
+			return 0;
+		} else {
+			int ano = dtaNascimento.getYear();
+			Date date = new Date();
+			if(dtaNascimento.getMonth() > date.getMonth()) {
+				return date.getYear() - ano -1;
+			}
+			return date.getYear() - ano;			
+		}
+	}
+	
+	public String getCaminhoImagem() {
+		if (arquivo == null) {
+			return null;
+		} else {
+			return Constants.CAMINHO_IMAGEM_PERFIL + arquivo;
+		}
+	}
 
 	@Override
 	public int hashCode() {
@@ -120,4 +150,30 @@ public class Perfil {
 			return false;
 		return true;
 	}
+
+	public ArrayList<String> getAlergias() {
+		return alergias;
+	}
+
+	public void setAlergias(ArrayList<String> alergias) {
+		this.alergias = alergias;
+	}
+
+	public String getArquivo() {
+		return arquivo;
+	}
+
+	public void setArquivo(String arquivo) {
+		this.arquivo = arquivo;
+	}
+
+	public Integer getPeso() {
+		return peso;
+	}
+
+	public void setPeso(Integer peso) {
+		this.peso = peso;
+	}
+
+
 }

@@ -1,35 +1,89 @@
-<div th:fragment="deleteVacina" class="modal fade" th:id="modalExcluirVacina+${vacina.id}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
- <div class="modal-dialog">
-  <div class="modal-content">
-   <div class="modal-header">
-    <h5 class="modal-title" id="staticBackdropLabel">Excluir Registro</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-   </div>
-   <div class="modal-body">
-    <h5 style="text-align:center">Deseja excluir a vacina<p style="text-align:center"><span th:text="${vacina.nome}"></span>?</p></h5>
-   </div>
-   <div class="modal-footer">
-    <a th:href="@{/vacinas/delete/{id}(id=${vacina.id})}" class="btn btn-danger">Sim</a>
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">N&atildeo</button>
-   </div>
-  </div>
- </div>
+<!-- MODAL EXCLUIR VACINAS -->
+<div th:fragment="deleteVacina" class="modal fade" th:id="modalExcluirVacina+${vacina.id}" data-bs-backdrop="static"
+    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Excluir Registro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5 style="text-align:center">Deseja excluir a vacina<p style="text-align:center"><span
+                            th:text="${vacina.nome}"></span>?</p>
+                </h5>
+            </div>
+            <div class="modal-footer">
+                <a th:href="@{/vacinas/delete/{id}(id=${vacina.id})}" class="btn btn-danger">Sim</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">N&atildeo</button>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div th:fragment="deleteExame" class="modal fade" th:id="modalExcluirExame+${exame.id}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
- <div class="modal-dialog">
-  <div class="modal-content">
-   <div class="modal-header">
-    <h5 class="modal-title" id="staticBackdropLabel">Excluir Exame</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-   </div>
-   <div class="modal-body">
-    <h5 style="text-align:center">Deseja excluir o Exame<p style="text-align:center"><span th:text="${exame.nome}"></span>?</p></h5>
-   </div>
-   <div class="modal-footer">
-    <a th:href="@{/exames/delete/{id}(id=${exame.id})}" class="btn btn-danger">Sim</a>
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">N&atildeo</button>
-   </div>
-  </div>
- </div>
+<!-- MODAL EXCLUIR EXAMES -->
+<div th:fragment="deleteExame" class="modal fade" th:id="modalExcluirExame+${exame.id}" data-bs-backdrop="static"
+    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Excluir Exame</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5 style="text-align:center">Deseja excluir o Exame<p style="text-align:center"><span
+                            th:text="${exame.nome}"></span>?</p>
+                </h5>
+            </div>
+            <div class="modal-footer">
+                <a th:href="@{/exames/delete/{id}(id=${exame.id})}" class="btn btn-danger">Sim</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">N&atildeo</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL EXCLUIR CONSULTAS -->
+<div th:fragment="deleteConsulta" class="modal fade" th:id="modalExcluirConsulta+${consulta.id}"
+    data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Excluir Registro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5 style="text-align:center">Deseja excluir a consulta com <p style="text-align:center"><span
+                            th:text="${consulta.especialidade}"></span>?</p>
+                </h5>
+            </div>
+            <div class="modal-footer">
+                <a th:href="@{/consultas/delete{id}(id=${consulta.id})}" class="btn btn-danger">Sim</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">N&atildeo</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL EXCLUIR MEDICAMENTOS -->
+<div th:fragment="deleteMedicamento" class="modal fade" th:id="modalExcluirMedicamento+${medicamento.id}"
+    data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Excluir Registro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5 style="text-align:center">Deseja excluir o medicamento <p style="text-align:center"><span
+                            th:text="${medicamento.nome}"></span>?</p>
+                </h5>
+            </div>
+            <div class="modal-footer">
+                <a th:href="@{/medicamentos/delete{id}(id=${medicamento.id})}" class="btn btn-danger">Sim</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">N&atildeo</button>
+            </div>
+        </div>
+    </div>
 </div>
