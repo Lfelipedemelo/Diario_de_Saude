@@ -2,35 +2,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<title>ERROR - Diário de Saúde</title>
-	<link rel="stylesheet" th:href="@{/assets/css/styles.css}" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
-		crossorigin="anonymous"></script>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>404</title>
+	<link rel="icon" href="/assets/img/logo.png" type="image/x-icon">
+	<link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet">
+
+	<link rel="stylesheet" th:href="@{/assets/css/error.css}"/>
+
 </head>
 
-<body class="d-flex">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="error-template">
-					<h1>
-						Oops!</h1>
-					<h2>
-						404 Not Found</h2>
-					<div class="error-details">
-						Sorry, an error has occured, Requested page not found!
-					</div>
-					<div class="error-actions">
-						<a th:href="@{/}" class="btn btn-primary btn-lg"><span class="fas fa-home"></span>
-							Voltar para login </a>
-					</div>
-				</div>
-			</div>
+<body>
+
+	<div id="notfound">
+		<div class="notfound">
+			<div class="notfound-404"></div>
+			<h1>404</h1>
+			<h2>Oops! Pagina não encontrada!</h2>
+			<p>Desculpa mas parece que a página que você estava tentando acessar não está disponivel, ou você não tem a permissão para acessá-la!</p>
+			<a th:href="@{/}">Voltar para tela de login</a>
 		</div>
 	</div>
+
 </body>
 
 </html>
