@@ -9,7 +9,7 @@ spring.datasource.username=UserNameDoSeuBancoMySql
 spring.datasource.password=SenhaSeuBancoMySql
 ```
 
-## Rodando a aplicação
+## 🚀 Rodando a aplicação
 
 ```sh
 Rodar a classe DiarioDeSaudeApplication.java
