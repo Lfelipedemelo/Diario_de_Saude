@@ -15,6 +15,15 @@ spring.datasource.password=SenhaSeuBancoMySql
 Rodar a classe DiarioDeSaudeApplication.java
 Acessar a url localhost:http://localhost:8080/
 ```
+## 👩‍💻 Tecnologias
+
+Principais tecnologias utilizadas!
+
+| Tecnologia | README |
+| ------ | ------ |
+| Spring | https://github.com/rails/spring/blob/main/README.md |
+| Thymeleaf | https://github.com/engma/thymeleaf-cheat-sheet/blob/master/README.md |
+| Bootstrap | https://github.com/twbs/bootstrap/blob/main/README.md |
 
 ## 💻 Desenvolvedores
 
