@@ -1,7 +1,8 @@
 package br.com.diario_de_saude.service;
 
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
+import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
@@ -21,22 +22,33 @@ public class UsuarioService {
 	
 	public ModelAndView create(Usuario usuario) throws NoSuchAlgorithmException {
 		ModelAndView mv = new ModelAndView("login");
-		if (usuario != null && rep.findByEmail(usuario.getEmail()) == null) {
+		if(!validarDataNascimento(usuario.getPerfil().getDtaNascimento())) {
+			mv.addObject("msg", "Data de nascimento invalida!");
+		} else if (usuario != null && rep.findByEmail(usuario.getEmail()) == null) {
 			usuario.setSenha(Encrypt.password(usuario.getSenha())); 
 			rep.save(usuario);
 			mv.addObject("msgSuccess", "Usuário cadastrado com sucesso!");
 		} else {
 			mv.addObject("msg", "Erro ao cadastrar novo usuário!");
 		}
+		mv.addObject("maxDate", LocalDate.now());
 		return mv;
+	}
+
+	private boolean validarDataNascimento(Date dtaNascimento) {
+		Date date = new Date();
+		if(dtaNascimento.getYear() < 90 || dtaNascimento.getYear() > date.getYear()
+				|| dtaNascimento.getDay() < 1 || dtaNascimento.getDay() > 31
+				|| dtaNascimento.getMonth() < 1 || dtaNascimento.getMonth() > 12) {
+			return false;
+		}
+		return true;
 	}
 
 	public ModelAndView login(Usuario usuario, HttpSession session)
 			throws NoSuchAlgorithmException {
 		ModelAndView mv = new ModelAndView("login");
-		if(!usuario.getEmail().equals("1@1")) {
 			usuario.setSenha(Encrypt.password(usuario.getSenha()));			
-		}
 		usuario = rep.verificarLogin(usuario.getEmail(), usuario.getSenha());
 		if (usuario != null) {
 			session.setAttribute("usuarioLogado", usuario);
