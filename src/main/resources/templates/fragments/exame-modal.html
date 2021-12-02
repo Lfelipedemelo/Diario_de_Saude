@@ -30,3 +30,47 @@
         </div>
     </div>
 </div>
+
+<div th:fragment="editarExame" class="modal fade" th:id="modalEditar+${exame.id}" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tituloDescricaoExame">Editar exame</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <form class="row g-3 needs-validation" action="/exames/edit" method="POST"
+								enctype="multipart/form-data">
+								<input th:value="${exame.id}" type="hidden" id="inputIdVacina" name="id">
+								<div class="col-12">
+									<label for="inputNomeExame" class="form-label">Nome do Exame</label>
+									<input type="text" class="form-control" id="inputNomeExame" placeholder=""
+										name="nome" th:value="${exame.nome}" required minlength="4">
+								</div>
+								<div class="mb-3">
+									<label for="inputDescricao" class="form-label">Descri&ccedil&atildeo:</label>
+									<textarea class="form-control" maxlength="255" id="inputDescricao" rows="3"
+										name="descricao" th:text="${exame.descricao}" required></textarea>
+								</div>
+								<div class="mb-3">
+									<label for="inputDataExame" class="form-label">Data</label>
+									<input type="date" th:max="${maxDate}" class="form-control" id="inputDataExame"
+										name="dtaExame" th:value="${#dates.format(exame.dtaExame, 'yyyy-MM-dd')}" required>
+								</div>
+								<div class="mb-3">
+									<label for="inputImagem" class="form-label">Arquivo de imagem</label>
+									<input class="form-control" type="file" id="inputImagem" name="imagemEditada"
+										accept="image/png, image/jpeg">
+										<small>*Se n&atildeo for adicionado nenhum arquivo, ser&aacute mantido a imagem anterior.</small>
+								</div>
+								<div class="modal-footer">
+									<button type="submit" class="btn btn-primary">Adicionar</button>
+									<button type="button" class="btn btn-secondary"
+										data-bs-dismiss="modal">Cancelar</button>
+								</div>
+							</form>
+            </div>
+        </div>
+    </div>
+</div>

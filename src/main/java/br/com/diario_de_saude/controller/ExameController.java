@@ -53,6 +53,11 @@ public class ExameController {
 		return service.adicionar(exame, session, mpFile);
 	}
 	
+	@PostMapping("/edit")
+	public ModelAndView editar(Exame exame, @RequestParam("imagemEditada") MultipartFile mpFile) throws Exception {
+		return service.editar(exame, mpFile);
+	}
+	
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Long id) {
 		repository.deleteById(id);

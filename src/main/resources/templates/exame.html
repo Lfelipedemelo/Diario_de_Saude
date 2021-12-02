@@ -78,6 +78,7 @@
 				</div>
 			</div>
 			<!-- FimModal Criar Exame -->
+			<h2 class="textExameEmpty p-4 my-auto mx-auto text-muted" th:if="${exames.size} == 0">Não há nenhum exame cadastrado ainda.</h2>
 			<div class="px-4 pb-4">
 				<div class="row row-cols-3">
 					<div class="gy-2" th:each="exame : ${exames}">
@@ -94,6 +95,10 @@
 											th:attr="data-bs-target='#modalDescricao'+${exame.id}">
 											<i class="fas fa-info-circle iconWhite"></i>
 										</a>
+										<a class="ms-1 btn btn-secondary btn-lg" data-bs-toggle="modal"
+											th:attr="data-bs-target='#modalEditar'+${exame.id}">
+											<i class="fas fa-edit"></i>
+										</a>
 										<a class="ms-1 btn-lg btn-danger" data-bs-toggle="modal"
 											th:attr="data-bs-target='#modalExcluirExame'+${exame.id}">
 											<i class="fas fa-trash-alt"></i>
@@ -104,6 +109,7 @@
 								<div th:replace="~{fragments/delete-modal :: deleteExame}"></div>
 								<div th:replace="~{fragments/exame-modal :: imageExame}"></div>
 								<div th:replace="~{fragments/exame-modal :: descricaoExame}"></div>
+								<div th:replace="~{fragments/exame-modal :: editarExame}"></div>
 								<div class="card-footer">
 									<small class="text-muted">Data do exame: </small>
 									<small class="text-muted float-end"
